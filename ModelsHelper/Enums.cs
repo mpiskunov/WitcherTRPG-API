@@ -128,7 +128,8 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         FoodAndDrink = 3,
         Clothing = 4,
         Service = 5,
-        Lodging = 6
+        Lodging = 6,
+        WitcherGear = 7
     }
 
     public enum SpellDifficultyClassification
@@ -163,6 +164,23 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Grandmaster = 4
     }
 
+    public enum AlchemySkillLevel
+    {
+        Novice = 1,
+        Journeyman = 2,
+        Master = 3,
+        WitcherPotion = 4,
+        BladeOil = 5,
+        WitcherDecoction = 6
+    }
+
+    public enum MutagenType
+    {
+        Red = 1,
+        Green = 2,
+        Blue = 3
+    }
+
     /// <summary>
     /// Used to distinguish different Diagram types when Crafting.
     /// </summary>
@@ -175,7 +193,8 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         ElderfolkWeapon = 5,
         ElderfolkArmor = 6,
         ElderfolkAmmunition = 7,
-        ArmorEnhancement = 8
+        ArmorEnhancement = 8,
+        WitcherGear = 9
     }
 
     /// <summary>

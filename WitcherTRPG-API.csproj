@@ -10,6 +10,8 @@
     <Compile Remove="Migrations\20200305013937_addedamounttocrafting.Designer.cs" />
     <Compile Remove="Migrations\20200305015936_fixedformulaes2.cs" />
     <Compile Remove="Migrations\20200305015936_fixedformulaes2.Designer.cs" />
+    <Compile Remove="Migrations\20200305034939_addedmodels.cs" />
+    <Compile Remove="Migrations\20200305034939_addedmodels.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

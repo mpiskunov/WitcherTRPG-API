@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.Models;
 using WitcherTRPGWebApplication.Interfaces;
 using WitcherTRPGWebApplication.Models;
 using WitcherTRPGWebApplication.ModelsHelper;
@@ -82,6 +83,14 @@ namespace WitcherTRPGWebApplication.Data
                             .HasKey(o => new { o.WeaponID, o.EffectID });
             modelBuilder.Entity<AmmunitionEffect>()
                             .HasKey(o => new { o.AmmunitionID, o.EffectID });
+            modelBuilder.Entity<CharacterBladeOil>()
+                .HasKey(o => new { o.CharacterSheetID, o.BladeOilID });
+            modelBuilder.Entity<CharacterMutagen>()
+                .HasKey(o => new { o.CharacterSheetID, o.MutagenID });
+            modelBuilder.Entity<CharacterWitcherPotion>()
+                .HasKey(o => new { o.CharacterSheetID, o.WitcherPotionID });
+            modelBuilder.Entity<CharacterWitcherDecoction>()
+                .HasKey(o => new { o.CharacterSheetID, o.WitcherDecoctionID });
 
         }
         public DbSet<AlchemicalItem> AlchemicalItems { get; set; }
@@ -174,5 +183,13 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<CriticalLevel> CriticalLevels { get; set; }
         public DbSet<DefiningSkillLink> DefiningSkillLinks { get; set; }
         public DbSet<DefiningSkillTable> DefiningSkillTables { get; set; }
+        public DbSet<Mutagen> Mutagens { get; set; }
+        public DbSet<WitcherDecoction> WitcherDecoctions { get; set; }
+        public DbSet<WitcherPotion> WitcherPotions { get; set; }
+        public DbSet<BladeOil> BladeOils { get; set; }
+        public DbSet<CharacterMutagen> CharacterMutagens { get; set; }
+        public DbSet<CharacterWitcherDecoction> CharacterWitcherDecoctions { get; set; }
+        public DbSet<CharacterWitcherPotion> CharacterWitcherPotions { get; set; }
+        public DbSet<CharacterBladeOil> CharacterBladeOils { get; set; }
     }
 }
