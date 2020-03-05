@@ -174,5 +174,6 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<CriticalLevel> CriticalLevels { get; set; }
         public DbSet<DefiningSkillLink> DefiningSkillLinks { get; set; }
         public DbSet<DefiningSkillTable> DefiningSkillTables { get; set; }
+        public DbSet<WitcherTRPGWebApplication.Models.ArmorEnhancementPackage> ArmorEnhancementPackage { get; set; }
     }
 }
