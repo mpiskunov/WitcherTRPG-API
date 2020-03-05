@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200305013937_addedamounttocrafting.cs" />
+    <Compile Remove="Migrations\20200305013937_addedamounttocrafting.Designer.cs" />
+    <Compile Remove="Migrations\20200305015936_fixedformulaes2.cs" />
+    <Compile Remove="Migrations\20200305015936_fixedformulaes2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPGWebApplication.Migrations
 {
     [DbContext(typeof(WitcherContext))]
-    partial class WitcherContextModelSnapshot : ModelSnapshot
+    [Migration("20200305015733_fixedformulaes")]
+    partial class fixedformulaes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,6 +136,71 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Ammunitions");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionDiagram", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AmmunitionID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CraftDC")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Investment")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AmmunitionID");
+
+                    b.ToTable("AmmunitionDiagrams");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionDiagramComponent", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AmmunitionDiagramID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CraftingDiagramComponentCraftingComponentID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CraftingDiagramComponentCraftingDiagramID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CraftingDiagramComponentID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubstanceID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AmmunitionDiagramID");
+
+                    b.HasIndex("SubstanceID");
+
+                    b.HasIndex("CraftingDiagramComponentCraftingDiagramID", "CraftingDiagramComponentCraftingComponentID");
+
+                    b.ToTable("AmmunitionDiagramComponents");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionEffect", b =>
@@ -2215,6 +2282,32 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.HasIndex("CraftingComponentID");
 
                     b.ToTable("CraftingDiagramComponents");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionDiagram", b =>
+                {
+                    b.HasOne("WitcherTRPGWebApplication.Models.Ammunition", "Ammunition")
+                        .WithMany()
+                        .HasForeignKey("AmmunitionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionDiagramComponent", b =>
+                {
+                    b.HasOne("WitcherTRPGWebApplication.Models.AmmunitionDiagram", "AmmunitionDiagram")
+                        .WithMany()
+                        .HasForeignKey("AmmunitionDiagramID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPGWebApplication.Models.Ingredient", "Substance")
+                        .WithMany()
+                        .HasForeignKey("SubstanceID");
+
+                    b.HasOne("WitcherTRPGWebApplication.ModelsHelper.CraftingDiagramComponent", "CraftingDiagramComponent")
+                        .WithMany()
+                        .HasForeignKey("CraftingDiagramComponentCraftingDiagramID", "CraftingDiagramComponentCraftingComponentID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionEffect", b =>

@@ -9,12 +9,9 @@ namespace WitcherTRPGWebApplication.Models
     public class BombFormulaeComponent
     {
         public int ID { get; set; }
-        public int BombDiagramID { get; set; }
-        public int? CraftingDiagramComponentID { get; set; }
-        public int? SubstanceID { get; set; }
+        public int BombFormulaeID { get; set; }
+        public string ComponentName { get; set; }
         public int Amount { get; set; }
         public BombFormulae BombFormulae { get; set; }
-        public CraftingDiagramComponent CraftingDiagramComponent { get; set; }
-        public Ingredient Substance { get; set; }
     }
 }

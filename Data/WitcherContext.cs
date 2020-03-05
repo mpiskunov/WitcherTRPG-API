@@ -103,8 +103,8 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<Glyph> Glyphs{ get; set; }
         public DbSet<CharacterRune> CharacterRunes{ get; set; }
         public DbSet<CharacterGlyph> CharacterGlyphs{ get; set; }
-        public DbSet<AmmunitionDiagram> AmmunitionDiagrams{ get; set; }
-        public DbSet<AmmunitionDiagramComponent> AmmunitionDiagramComponents{ get; set; }
+        //public DbSet<AmmunitionDiagram> AmmunitionDiagrams{ get; set; }
+        //public DbSet<AmmunitionDiagramComponent> AmmunitionDiagramComponents{ get; set; }
         public DbSet<BombFormulae> BombFormulaes{ get; set; }
         public DbSet<BombFormulaeComponent> BombFormulaeComponents{ get; set; }
         public DbSet<TrapDiagram> TrapDiagrams{ get; set; }
@@ -174,6 +174,5 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<CriticalLevel> CriticalLevels { get; set; }
         public DbSet<DefiningSkillLink> DefiningSkillLinks { get; set; }
         public DbSet<DefiningSkillTable> DefiningSkillTables { get; set; }
-        public DbSet<WitcherTRPGWebApplication.Models.ArmorEnhancementPackage> ArmorEnhancementPackage { get; set; }
     }
 }

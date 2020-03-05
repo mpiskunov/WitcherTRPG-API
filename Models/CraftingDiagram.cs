@@ -19,5 +19,6 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         public int SkillLevelID { get; set; }
         public int CategoryID { get; set; }
         public int ObjectReferenceID { get; set; }
+        public int Amount { get; set; }
     }
 }
