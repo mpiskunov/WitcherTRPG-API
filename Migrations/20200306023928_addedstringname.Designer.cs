@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPGWebApplication.Migrations
 {
     [DbContext(typeof(WitcherContext))]
-    partial class WitcherContextModelSnapshot : ModelSnapshot
+    [Migration("20200306023928_addedstringname")]
+    partial class addedstringname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1642,11 +1644,6 @@ namespace WitcherTRPGWebApplication.Migrations
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.ProfessionSkillPackage", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("ProfessionID")
                         .HasColumnType("int");
 
@@ -1656,9 +1653,7 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("SkillName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProfessionID");
+                    b.HasKey("ProfessionID", "SkillID");
 
                     b.HasIndex("SkillID");
 
@@ -2948,7 +2943,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.HasOne("WitcherTRPGWebApplication.Models.Skill", "Skill")
                         .WithMany()
-                        .HasForeignKey("SkillID");
+                        .HasForeignKey("SkillID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.RacialPerk", b =>

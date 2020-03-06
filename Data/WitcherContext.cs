@@ -19,8 +19,8 @@ namespace WitcherTRPGWebApplication.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Composite Key
-            modelBuilder.Entity<ProfessionSkillPackage>()
-                .HasKey(o => new { o.ProfessionID, o.SkillID });
+            //modelBuilder.Entity<ProfessionSkillPackage>()
+            //    .HasKey(o => new { o.ProfessionID, o.SkillID });
             modelBuilder.Entity<CharacterAlchemicalItem>()
                 .HasKey(o => new { o.CharacterSheetID, o.AlchemicalItemID });
             modelBuilder.Entity<CharacterAmmunition>()
