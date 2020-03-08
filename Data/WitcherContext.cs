@@ -190,6 +190,12 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<CharacterMutagen> CharacterMutagens { get; set; }
         public DbSet<CharacterWitcherDecoction> CharacterWitcherDecoctions { get; set; }
         public DbSet<CharacterWitcherPotion> CharacterWitcherPotions { get; set; }
-        public DbSet<CharacterBladeOil> CharacterBladeOils { get; set; }
+        public DbSet<Monster> Monsters { get; set; }
+        public DbSet<MonsterAbility> MonsterAbilities { get; set; }
+        public DbSet<MonsterInformation> MonsterInformations { get; set; }
+        public DbSet<MonsterLoot> MonsterLoots { get; set; }
+        public DbSet<MonsterSkill> MonsterSkills { get; set; }
+        public DbSet<MonsterVulnerability> MonsterVulnerabilities { get; set; }
+        public DbSet<MonsterWeapon> MonsterWeapons { get; set; }
     }
 }

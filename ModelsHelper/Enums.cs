@@ -256,4 +256,21 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Description = 1,
         Table = 2
     }
+
+    public enum MonsterType
+    {
+        Humanoid = 1,
+        Necrophage = 2,
+        Specter = 3,
+        Beast = 4,
+        CursedOne = 5,
+        Hybrid = 6,
+        Insectoid = 7,
+        Elementa = 8,
+        Relict = 9,
+        Ogroid = 10,
+        Draconoid = 11,
+        Vampire = 12,
+        Other = 13
+    }
 }
