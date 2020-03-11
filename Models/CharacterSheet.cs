@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.Models;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -26,6 +27,7 @@ namespace WitcherTRPGWebApplication.Models
         public string FeelingsOnPeople { get; set; }
         public int RaceID { get; set; }
         public int ProfessionID { get; set; }
+        public int CampaignID { get; set; }
         //public int IntelligenceID { get; set; }
         //public int ReflexID { get; set; }
         //public int DexterityID { get; set; }
@@ -37,6 +39,7 @@ namespace WitcherTRPGWebApplication.Models
         //public int LuckID { get; set; }
         public Race Race { get; set; }
         public Profession Profession { get; set; }
+        public Campaign Campaign { get; set; }
         //public CharacterStatistic Intelligence { get; set; }
         //public CharacterStatistic Reflex { get; set; }
         //public CharacterStatistic Dexterity { get; set; }

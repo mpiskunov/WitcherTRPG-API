@@ -12,6 +12,12 @@
     <Compile Remove="Migrations\20200305015936_fixedformulaes2.Designer.cs" />
     <Compile Remove="Migrations\20200305034939_addedmodels.cs" />
     <Compile Remove="Migrations\20200305034939_addedmodels.Designer.cs" />
+    <Compile Remove="Migrations\20200311033909_Addedmonstersandcampaignobj.cs" />
+    <Compile Remove="Migrations\20200311033909_Addedmonstersandcampaignobj.Designer.cs" />
+    <Compile Remove="Migrations\20200311034614_Addedmonstersandcampaignobj.cs" />
+    <Compile Remove="Migrations\20200311034614_Addedmonstersandcampaignobj.Designer.cs" />
+    <Compile Remove="Migrations\20200311034832_Addedmonstersandcampaignobj.cs" />
+    <Compile Remove="Migrations\20200311034832_Addedmonstersandcampaignobj.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

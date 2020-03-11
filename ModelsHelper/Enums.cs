@@ -221,15 +221,6 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Fulgur = 9
     }
 
-    public enum RaceType
-    {
-        Human = 1,
-        Witcher = 2,
-        Dwarf = 3,
-        Elf = 4,
-        Halfing = 5
-    }
-
     public enum CriticalLevelCategory
     { 
         Simple = 1,
@@ -248,7 +239,8 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         ManAtArms = 6,
         Merchant = 7,
         Priest = 8,
-        Witcher = 9
+        Witcher = 9,
+        Noble = 10
     }
 
     public enum DefiningSkillTableType
@@ -273,4 +265,14 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Vampire = 12,
         Other = 13
     }
+
+    public enum RaceType
+    {
+        Witcher = 1,
+        Elven = 2,
+        Dwarvern = 3,
+        Human = 4,
+        Halfling = 5
+    }
+
 }

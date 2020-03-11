@@ -197,5 +197,9 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<MonsterSkill> MonsterSkills { get; set; }
         public DbSet<MonsterVulnerability> MonsterVulnerabilities { get; set; }
         public DbSet<MonsterWeapon> MonsterWeapons { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<CampaignCover> CampaignCovers { get; set; }
+        public DbSet<CampaignMonster> CampaignMonsters { get; set; }
+        public DbSet<CampaignNote> CampaignNotes { get; set; }
     }
 }
