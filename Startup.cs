@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WitcherTRPGWebApplication.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace WitcherTRPG_API
 {
@@ -28,7 +31,12 @@ namespace WitcherTRPG_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().AddJsonOptions(opts =>
+            {
+                opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             services.AddDbContext<WitcherContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WitcherSql")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
