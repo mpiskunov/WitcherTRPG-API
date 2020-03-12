@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPG_API.Models
 {
@@ -12,6 +13,6 @@ namespace WitcherTRPG_API.Models
         public string Effect { get; set; }
         public int AlchemyDC { get; set; }
         public string MinorMutation { get; set; }
-        public int TypeID { get; set; }
+        public MutagenType MutagenType { get; set; }
     }
 }

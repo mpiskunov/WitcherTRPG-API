@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -14,7 +15,7 @@ namespace WitcherTRPGWebApplication.Models
         public bool BludgeoningResistant { get; set; }
         public bool SlashingResistant { get; set; }
         public bool PiercingResistant { get; set; }
-        public string Availability { get; set; }
+        public Availability Availability { get; set; }
         public decimal Weight { get; set; }
         public decimal Price { get; set; }
         public string Effect { get; set; }

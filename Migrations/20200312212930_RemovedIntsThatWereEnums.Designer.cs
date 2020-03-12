@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPGWebApplication.Migrations
 {
     [DbContext(typeof(WitcherContext))]
-    partial class WitcherContextModelSnapshot : ModelSnapshot
+    [Migration("20200312212930_RemovedIntsThatWereEnums")]
+    partial class RemovedIntsThatWereEnums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +64,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -110,10 +112,10 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("AttackType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Availability")
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
-                    b.Property<int>("Concealment")
+                    b.Property<int>("ConcealmentEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -161,7 +163,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -234,7 +236,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<bool>("BludgeoningResistant")
@@ -1541,8 +1543,8 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
-                        .HasColumnType("int");
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("decimal(18,2)");
@@ -1956,7 +1958,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<string>("Concealment")
@@ -2077,10 +2079,10 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("AttackType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Availability")
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
-                    b.Property<int>("Concealment")
+                    b.Property<int>("ConcealmentEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")

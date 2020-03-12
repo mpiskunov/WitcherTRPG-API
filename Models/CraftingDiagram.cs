@@ -16,8 +16,8 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         public string Time { get; set; }
         public decimal Investment { get; set; }
         public decimal Cost { get; set; }
-        public int SkillLevelID { get; set; }
-        public int CategoryID { get; set; }
+        public SkillLevel SkillLevel { get; set; }
+        public CraftingDiagramCategory CraftingDiagramCategory { get; set; }
         public int ObjectReferenceID { get; set; }
         public int Amount { get; set; }
     }

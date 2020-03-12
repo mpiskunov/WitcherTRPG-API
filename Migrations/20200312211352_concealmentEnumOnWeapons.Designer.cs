@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPGWebApplication.Migrations
 {
     [DbContext(typeof(WitcherContext))]
-    partial class WitcherContextModelSnapshot : ModelSnapshot
+    [Migration("20200312211352_concealmentEnumOnWeapons")]
+    partial class concealmentEnumOnWeapons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,9 @@ namespace WitcherTRPGWebApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("decimal(18,2)");
@@ -62,7 +67,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -110,10 +118,16 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("AttackType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
-                    b.Property<int>("Concealment")
+                    b.Property<string>("Concealment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ConcealmentEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -161,7 +175,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -188,6 +205,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("WeightCategoryID")
+                        .HasColumnType("int");
+
                     b.Property<int>("WeightClassification")
                         .HasColumnType("int");
 
@@ -201,10 +221,13 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("ArmorID")
                         .HasColumnType("int");
 
+                    b.Property<int>("ArmorClassificationID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ArmorClassification")
                         .HasColumnType("int");
 
-                    b.HasKey("ArmorID", "ArmorClassification");
+                    b.HasKey("ArmorID", "ArmorClassificationID");
 
                     b.ToTable("ArmorCovers");
                 });
@@ -234,7 +257,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<bool>("BludgeoningResistant")
@@ -1151,6 +1177,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("BonusDamage")
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
                     b.Property<int>("CriticalLevelCategory")
                         .HasColumnType("int");
 
@@ -1266,6 +1295,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("SecondColumnValue")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TableType")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("DefiningSkillID");
@@ -1327,6 +1359,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("SkillLevel")
                         .HasColumnType("int");
 
+                    b.Property<int>("SkillLevelID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
@@ -1351,6 +1386,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("FormulaeID")
                         .HasColumnType("int");
 
+                    b.Property<int>("SubstanceCategoryID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("FormulaeID");
@@ -1364,6 +1402,9 @@ namespace WitcherTRPGWebApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("decimal(18,2)");
@@ -1464,6 +1505,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("Quantity")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Rarity")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");
 
@@ -1500,6 +1544,12 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SkillLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillLevelID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpellCategoryID")
                         .HasColumnType("int");
 
                     b.Property<int>("SpellTypeClassification")
@@ -1541,7 +1591,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClassificationTypeID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -1640,6 +1693,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("ProfessionCategory")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProfessionCategoryID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.ToTable("Professions");
@@ -1679,6 +1735,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RaceCategoryID")
+                        .HasColumnType("int");
 
                     b.Property<int>("RaceType")
                         .HasColumnType("int");
@@ -1766,6 +1825,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<string>("DifficultyCheck")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DifficultyTypeID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Duration")
                         .HasColumnType("nvarchar(max)");
@@ -1882,6 +1944,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("SkillCategory")
                         .HasColumnType("int");
 
+                    b.Property<int>("SkillTypeID")
+                        .HasColumnType("int");
+
                     b.Property<int>("StatisticID")
                         .HasColumnType("int");
 
@@ -1914,6 +1979,12 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("Range")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SkillLevelID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpellCategoryID")
+                        .HasColumnType("int");
+
                     b.Property<int>("SpellDifficultyClassification")
                         .HasColumnType("int");
 
@@ -1944,6 +2015,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("StatisticCategory")
                         .HasColumnType("int");
 
+                    b.Property<int>("StatisticTypeID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.ToTable("Statistics");
@@ -1956,7 +2030,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
                     b.Property<string>("Concealment")
@@ -2077,10 +2154,16 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("AttackType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Availability")
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AvailabilityEnum")
                         .HasColumnType("int");
 
-                    b.Property<int>("Concealment")
+                    b.Property<string>("Concealment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ConcealmentEnum")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -2108,6 +2191,9 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WeaponAccuracy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WeaponCategoryID")
                         .HasColumnType("int");
 
                     b.Property<int>("WeaponClassification")
@@ -2161,11 +2247,17 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<string>("Range")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SignClassificationID")
+                        .HasColumnType("int");
+
                     b.Property<int>("SpellTypeClassification")
                         .HasColumnType("int");
 
                     b.Property<string>("StaminaCost")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TypeID")
+                        .HasColumnType("int");
 
                     b.Property<int>("WitcherSignClassification")
                         .HasColumnType("int");
@@ -2183,6 +2275,9 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
@@ -2204,6 +2299,9 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("SkillLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillLevelID")
                         .HasColumnType("int");
 
                     b.Property<string>("Time")
@@ -2739,6 +2837,9 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MutagenType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");

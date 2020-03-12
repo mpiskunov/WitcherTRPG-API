@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -14,7 +15,7 @@ namespace WitcherTRPGWebApplication.Models
         public string SecondColumn { get; set; }
         public string SecondColumnValue { get; set; }
         public string DefiningSkillFilter { get; set; }
-        public int TableType { get; set; }
+        public DefiningSkillTableType DefiningSkillTableType { get; set; }
         public DefiningSkill DefiningSkill { get; set; }
     }
 }

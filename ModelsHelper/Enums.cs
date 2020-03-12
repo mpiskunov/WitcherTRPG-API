@@ -275,4 +275,20 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Halfling = 5
     }
 
+    public enum Availability
+    {
+        Everywhere = 1,
+        Common = 2,
+        Poor = 3,
+        Rare = 4
+    }
+
+    public enum Concealment
+    {
+        Tiny = 1,
+        Small = 2,
+        Large = 3,
+        CantHide = 4
+    }
+
 }

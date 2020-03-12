@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -12,6 +13,6 @@ namespace WitcherTRPGWebApplication.Models
         public decimal? Weight { get; set; }
         public decimal Cost { get; set; }
         public string Description { get; set; }
-        public int CategoryID { get; set; }
+        public GeneralGearClassification GeneralGearClassification { get; set; }
     }
 }

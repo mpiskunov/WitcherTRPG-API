@@ -18,6 +18,12 @@
     <Compile Remove="Migrations\20200311034614_Addedmonstersandcampaignobj.Designer.cs" />
     <Compile Remove="Migrations\20200311034832_Addedmonstersandcampaignobj.cs" />
     <Compile Remove="Migrations\20200311034832_Addedmonstersandcampaignobj.Designer.cs" />
+    <Compile Remove="Migrations\20200312211731_updatedenums.cs" />
+    <Compile Remove="Migrations\20200312211731_updatedenums.Designer.cs" />
+    <Compile Remove="Migrations\20200312212506_RemovedIntsThatWereEnums.cs" />
+    <Compile Remove="Migrations\20200312212506_RemovedIntsThatWereEnums.Designer.cs" />
+    <Compile Remove="Migrations\20200312214620_renamedenums.cs" />
+    <Compile Remove="Migrations\20200312214620_renamedenums.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

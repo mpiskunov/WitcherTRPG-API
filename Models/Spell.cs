@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -14,7 +15,7 @@ namespace WitcherTRPGWebApplication.Models
         public string Range { get; set; }
         public string Duration { get; set; }
         public string Defense { get; set; }
-        public int SkillLevelID { get; set; }
-        public int SpellCategoryID { get; set; }
+        public SpellDifficultyClassification SpellDifficultyClassification { get; set; }
+        public SpellTypeClassification SpellTypeClassification { get; set; }
     }
 }

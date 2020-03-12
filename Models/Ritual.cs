@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -14,8 +15,6 @@ namespace WitcherTRPGWebApplication.Models
         public string PreperationTime { get; set; }
         public string DifficultyCheck { get; set; }
         public string Duration { get; set; }
-        //public string Components { get; set; }
-        //public string AlternateComponents { get; set; }
-        public int DifficultyTypeID { get; set; }
+        public SpellDifficultyClassification SpellDifficultyClassification { get; set; }
     }
 }

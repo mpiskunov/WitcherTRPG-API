@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -10,9 +11,7 @@ namespace WitcherTRPGWebApplication.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        //public int DefiningSkillID { get; set; }
         public int DefaultVigorValue { get; set; }
-        public int ProfessionCategoryID { get; set; }
-        //public DefiningSkill DefiningSkill { get; set; }
+        public ProfessionCategory ProfessionCategory { get; set; }
     }
 }

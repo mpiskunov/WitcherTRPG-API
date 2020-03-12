@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -12,6 +13,6 @@ namespace WitcherTRPGWebApplication.Models
         public int AlchemyDC { get; set; }
         public string Time { get; set; }
         public string Cost { get; set; }
-        public int SkillLevelID { get; set; }
+        public SkillLevel SkillLevel { get; set; }
     }
 }

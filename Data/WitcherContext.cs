@@ -76,7 +76,7 @@ namespace WitcherTRPGWebApplication.Data
             modelBuilder.Entity<CharacterTrap>()
                             .HasKey(o => new { o.CharacterSheetID, o.TrapID });
             modelBuilder.Entity<ArmorCover>()
-                            .HasKey(o => new { o.ArmorID, o.ArmorClassificationID });
+                            .HasKey(o => new { o.ArmorID, o.ArmorClassification });
             modelBuilder.Entity<ArmorEffect>()
                             .HasKey(o => new { o.ArmorID, o.EffectID });
             modelBuilder.Entity<WeaponEffect>()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
@@ -11,7 +12,7 @@ namespace WitcherTRPGWebApplication.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int PointsPerLevel { get; set; }
-        public int SkillTypeID { get; set; }
+        public SkillCategory SkillCategory { get; set; }
         public int StatisticID { get; set; }
         public Statistic Statistic { get; set; }
     }
