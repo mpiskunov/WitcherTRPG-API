@@ -25,7 +25,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MonsterLoot>>> GetMonsterLoots()
         {
-            return await _context.MonsterLoots.ToListAsync();
+            return await _context.MonsterLoots.Include(ml => ml.Monster).ToListAsync();
         }
 
         // GET: api/MonsterLoots/5

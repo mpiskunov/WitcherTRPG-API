@@ -78,8 +78,9 @@ namespace WitcherTRPG_API.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Campaign>> PostCampaign(Campaign campaign)
+        public async Task<ActionResult> PostCampaign([FromBody] Campaign campaign)
         {
+            campaign.CreatedDate = DateTime.Now;
             _context.Campaigns.Add(campaign);
             await _context.SaveChangesAsync();
 
