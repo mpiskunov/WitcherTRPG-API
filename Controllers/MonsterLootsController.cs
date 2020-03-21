@@ -42,6 +42,20 @@ namespace WitcherTRPG_API.Controllers
             return monsterLoot;
         }
 
+        // GET: api/MonsterLoots/5
+        [HttpGet("MonsterID/{monsterID}")]
+        public async Task<ActionResult<IEnumerable<MonsterLoot>>> GetMonsterLootByMonsterID(int monsterID)
+        {
+            var monsterLoot = await _context.MonsterLoots.Where(m => m.MonsterID == monsterID).Include(m => m.Monster).ToListAsync();
+
+            if (monsterLoot == null)
+            {
+                return NotFound();
+            }
+
+            return monsterLoot;
+        }
+
         // PUT: api/MonsterLoots/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
