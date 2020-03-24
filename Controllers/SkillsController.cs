@@ -25,7 +25,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Skill>>> GetSkills()
         {
-            return await _context.Skills.ToListAsync();
+            return await _context.Skills.Include(sk => sk.Statistic).ToListAsync();
         }
 
         // GET: api/Skills/5
