@@ -25,7 +25,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Effect>>> GetEffects()
         {
-            return await _context.Effects.ToListAsync();
+            return await _context.Effects.OrderBy(o => o.Name).ToListAsync();
         }
 
         // GET: api/Effects/5
