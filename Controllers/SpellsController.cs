@@ -25,7 +25,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Spell>>> GetSpells()
         {
-            return await _context.Spells.ToListAsync();
+            return await _context.Spells.OrderBy(o => o.SpellDifficultyClassification).ThenBy(o => o.Name).ToListAsync();
         }
 
         // GET: api/Spells/5

@@ -25,7 +25,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ArmorCover>>> GetArmorCovers()
         {
-            return await _context.ArmorCovers.ToListAsync();
+            return await _context.ArmorCovers.Include(ac => ac.Armor).ToListAsync();
         }
 
         // GET: api/ArmorCovers/5
