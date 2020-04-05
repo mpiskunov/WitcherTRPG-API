@@ -24,6 +24,10 @@
     <Compile Remove="Migrations\20200312212506_RemovedIntsThatWereEnums.Designer.cs" />
     <Compile Remove="Migrations\20200312214620_renamedenums.cs" />
     <Compile Remove="Migrations\20200312214620_renamedenums.Designer.cs" />
+    <Compile Remove="Migrations\20200405035742_addedcritsandfumbles.cs" />
+    <Compile Remove="Migrations\20200405035742_addedcritsandfumbles.Designer.cs" />
+    <Compile Remove="Migrations\20200405040006_addedcritsandfumbles.cs" />
+    <Compile Remove="Migrations\20200405040006_addedcritsandfumbles.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

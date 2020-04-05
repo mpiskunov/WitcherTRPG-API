@@ -221,7 +221,7 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Fulgur = 9
     }
 
-    public enum CriticalLevelCategory
+    public enum CriticalWoundType
     { 
         Simple = 1,
         Complex = 2,
@@ -289,6 +289,20 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Small = 2,
         Large = 3,
         CantHide = 4
+    }
+
+    public enum FumbleType
+    {
+        MeleeAttack = 1,
+        ArmedDefense = 2,
+        RangedAttack = 3,
+        UnarmedAttackOrDefense = 4
+    }
+
+    public enum MonsterAnatomyType
+    {
+        WithAnatomy = 1,
+        WithoutAnatomy = 2
     }
 
 }

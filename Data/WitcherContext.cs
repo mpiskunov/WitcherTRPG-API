@@ -201,5 +201,7 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<CampaignCover> CampaignCovers { get; set; }
         public DbSet<CampaignMonster> CampaignMonsters { get; set; }
         public DbSet<CampaignNote> CampaignNotes { get; set; }
+        public DbSet<CriticalTable> CriticalTables { get; set; }
+        public DbSet<Fumble> Fumbles { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPGWebApplication.Migrations
 {
     [DbContext(typeof(WitcherContext))]
-    partial class WitcherContextModelSnapshot : ModelSnapshot
+    [Migration("20200405040211_addedcritsandfumbles")]
+    partial class addedcritsandfumbles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1149,9 +1151,6 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("BonusDamage")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CriticalWoundType")
                         .HasColumnType("int");
 
                     b.Property<int>("MonsterAnatomyType")
@@ -2533,9 +2532,6 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Roll")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RollType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
