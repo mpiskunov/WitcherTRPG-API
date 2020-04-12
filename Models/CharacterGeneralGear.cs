@@ -12,6 +12,7 @@ namespace WitcherTRPGWebApplication.Models
         public int? Amount { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public GeneralGear GeneralGear { get; set; }
+        public bool Deleted { get; set; }
         // Work on items in Inventory
     }
 }

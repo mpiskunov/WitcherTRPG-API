@@ -14,5 +14,6 @@ namespace WitcherTRPGWebApplication.Models
         public int CurrentValue { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Effect Effect { get; set; }
+        public bool Deleted { get; set; }
     }
 }

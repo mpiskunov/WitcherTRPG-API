@@ -21,6 +21,7 @@ namespace WitcherTRPGWebApplication.Models
         public bool IsEquipped { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Armor Armor { get; set; }
+        public bool Deleted { get; set; }
         //public EffectPackage EffectPackage { get; set; }
     }
 }

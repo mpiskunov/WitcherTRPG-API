@@ -80,7 +80,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpPost]
         public async Task<ActionResult> PostCampaign([FromBody] Campaign campaign)
         {
-            campaign.CreatedDate = DateTime.Now;
+            //campaign.CreatedDate = DateTime.Now;
             _context.Campaigns.Add(campaign);
             await _context.SaveChangesAsync();
 

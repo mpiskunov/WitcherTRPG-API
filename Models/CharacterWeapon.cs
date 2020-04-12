@@ -25,5 +25,6 @@ namespace WitcherTRPGWebApplication.Models
         //public int? AdditionalEffectsID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Weapon Weapon { get; set; }
+        public bool Deleted { get; set; }
     }
 }

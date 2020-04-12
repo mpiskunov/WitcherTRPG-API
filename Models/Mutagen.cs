@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPG_API.Models
 {
-    public class Mutagen
+    public class Mutagen : WitcherObject
     {
         public int ID { get; set; }
         public string MutagenSource { get; set; }

@@ -15,5 +15,6 @@ namespace WitcherTRPGWebApplication.Models
         public CharacterArmor CharacterArmor { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public ArmorEnhancement ArmorEnhancement { get; set; }
+        public bool Deleted { get; set; }
     }
 }

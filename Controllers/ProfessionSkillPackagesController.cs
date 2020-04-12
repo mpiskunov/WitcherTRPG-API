@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WitcherTRPG_API.Models;
 using WitcherTRPGWebApplication.Data;
 using WitcherTRPGWebApplication.Models;
 

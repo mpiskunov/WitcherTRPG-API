@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Interfaces
@@ -9,7 +10,7 @@ namespace WitcherTRPGWebApplication.Interfaces
     /// <summary>
     /// Component that will be used for crafting diagrams.
     /// </summary>
-    public class CraftingComponent
+    public class CraftingComponent : WitcherObject
     {
         public int ID { get; set; }
         public string Name { get; set; }

@@ -305,4 +305,16 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         WithoutAnatomy = 2
     }
 
+    public enum DerivedStatisticCategory
+    {
+        Vigor = 1,
+        Stun = 2,
+        Run = 3,
+        Leap = 4,
+        HP = 5,
+        STA = 6,
+        ENC = 7,
+        REC = 8
+    }
+
 }

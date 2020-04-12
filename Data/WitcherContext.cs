@@ -91,6 +91,12 @@ namespace WitcherTRPGWebApplication.Data
                 .HasKey(o => new { o.CharacterSheetID, o.WitcherPotionID });
             modelBuilder.Entity<CharacterWitcherDecoction>()
                 .HasKey(o => new { o.CharacterSheetID, o.WitcherDecoctionID });
+            modelBuilder.Entity<MonsterStatistic>()
+                .HasKey(o => new { o.MonsterID, o.StatisticID });
+            modelBuilder.Entity<MonsterDerivedStatistic>()
+               .HasKey(o => new { o.MonsterID, o.DerivedStatisticID });
+            modelBuilder.Entity<CharacterDerivedStatistic>()
+               .HasKey(o => new { o.CharacterSheetID, o.DerivedStatisticID });
 
         }
         public DbSet<AlchemicalItem> AlchemicalItems { get; set; }
@@ -146,7 +152,6 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<DamageLocation> DamageLocations { get; set; }
         public DbSet<DefiningSkill> DefiningSkills { get; set; }
         public DbSet<Effect> Effects { get; set; }
-        public DbSet<EffectPackage> EffectPackages { get; set; }
         public DbSet<Formulae> Formulaes { get; set; }
         public DbSet<FormulaeComponent> FormulaeComponents { get; set; }
         //public DbSet<Gender> Genders { get; set; }
@@ -203,5 +208,9 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<CampaignNote> CampaignNotes { get; set; }
         public DbSet<CriticalTable> CriticalTables { get; set; }
         public DbSet<Fumble> Fumbles { get; set; }
+        public DbSet<Source> Sources { get; set; }
+        public DbSet<MonsterStatistic> MonsterStatistics { get; set; }
+        public DbSet<MonsterDerivedStatistic> MonsterDerivedStatistics { get; set; }
+        public DbSet<CharacterDerivedStatistic> CharacterDerivedStatistics { get; set; }
     }
 }

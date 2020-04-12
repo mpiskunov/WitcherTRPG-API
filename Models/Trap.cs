@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
-    public class Trap
+    public class Trap : WitcherObject
     {
         public int ID { get; set; }
         public string Name { get; set; }

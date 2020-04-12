@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
-    public class AmmunitionEffect
+    public class AmmunitionEffect : WitcherObject
     {
         public int AmmunitionID { get; set; }
         public int EffectID { get; set; }

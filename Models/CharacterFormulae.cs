@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public bool RetainedByMemory { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Formulae Formulae { get; set; }
+        public bool Deleted { get; set; }
     }
 }

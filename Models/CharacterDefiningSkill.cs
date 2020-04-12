@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public int Value { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public DefiningSkill DefiningSkill { get; set; }
+        public bool Deleted { get; set; }
     }
 }

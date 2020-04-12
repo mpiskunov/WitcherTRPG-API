@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public string EffectName { get; set; }
         public string EffectDescription { get; set; }
         public CharacterArmor CharacterArmor { get; set; }
+        public bool Deleted { get; set; }
     }
 }

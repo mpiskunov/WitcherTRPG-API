@@ -13,5 +13,6 @@ namespace WitcherTRPG_API.Models
         public int Amount { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public BladeOil BladeOil{ get; set; }
+        public bool Deleted { get; set; }
     }
 }

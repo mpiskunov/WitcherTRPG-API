@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 
 namespace WitcherTRPG_API.Models
 {
-    public class MonsterAbility
+    public class MonsterAbility : WitcherObject
     {
         public int ID { get; set; }
         public int MonsterID { get; set; }

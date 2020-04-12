@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
-    public class DefiningSkill
+    public class DefiningSkill : WitcherObject
     {
         public int ID { get; set; }
         public int? StatisticID { get; set; }

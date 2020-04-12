@@ -16,5 +16,6 @@ namespace WitcherTRPGWebApplication.Models
         //public int? MountOutfitPackageID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Mount_Vehicle Mount_Vehicle { get; set; }
+        public bool Deleted { get; set; }
     }
 }

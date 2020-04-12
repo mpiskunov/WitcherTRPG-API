@@ -28,6 +28,8 @@
     <Compile Remove="Migrations\20200405035742_addedcritsandfumbles.Designer.cs" />
     <Compile Remove="Migrations\20200405040006_addedcritsandfumbles.cs" />
     <Compile Remove="Migrations\20200405040006_addedcritsandfumbles.Designer.cs" />
+    <Compile Remove="Migrations\20200412060233_AddedBasicPropertiesToAllTables.cs" />
+    <Compile Remove="Migrations\20200412060233_AddedBasicPropertiesToAllTables.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

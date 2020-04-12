@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public int WitcherSignID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public WitcherSign WitcherSign { get; set; }
+        public bool Deleted { get; set; }
     }
 }

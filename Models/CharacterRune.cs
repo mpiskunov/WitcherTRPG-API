@@ -15,5 +15,6 @@ namespace WitcherTRPGWebApplication.Models
         public CharacterSheet CharacterSheet { get; set; }
         public Rune Rune { get; set; }
         public CharacterWeapon CharacterWeapon { get; set; }
+        public bool Deleted { get; set; }
     }
 }

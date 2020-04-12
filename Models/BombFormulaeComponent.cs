@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
-    public class BombFormulaeComponent
+    public class BombFormulaeComponent : WitcherObject
     {
         public int ID { get; set; }
         public int BombFormulaeID { get; set; }

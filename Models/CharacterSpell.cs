@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public int SpellID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Spell Spell { get; set; }
+        public bool Deleted { get; set; }
     }
 }

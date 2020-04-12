@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
+using WitcherTRPGWebApplication.Models;
 
-namespace WitcherTRPGWebApplication.Models
+namespace WitcherTRPG_API.Models
 {
-    public class ProfessionSkillPackage
+    public class ProfessionSkillPackage : WitcherObject
     {
-        
         public int ID { get; set; }
         public int ProfessionID { get; set; }
         public string SkillName { get; set; }

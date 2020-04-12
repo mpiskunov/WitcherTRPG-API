@@ -11,5 +11,6 @@ namespace WitcherTRPGWebApplication.Models
         public int HexID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Hex Hex { get; set; }
+        public bool Deleted { get; set; }
     }
 }

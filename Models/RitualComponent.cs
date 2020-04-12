@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
-    public class RitualComponent
+    public class RitualComponent : WitcherObject
     {
         public int ID { get; set; }
         public int RitualID { get; set; }

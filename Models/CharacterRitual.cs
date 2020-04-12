@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public int RitualID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Ritual Ritual { get; set; }
+        public bool Deleted { get; set; }
     }
 }

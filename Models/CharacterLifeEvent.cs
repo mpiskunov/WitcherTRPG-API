@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public int Decade { get; set; }
         public string Event { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
+        public bool Deleted { get; set; }
     }
 }

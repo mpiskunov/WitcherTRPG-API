@@ -12,5 +12,6 @@ namespace WitcherTRPGWebApplication.Models
         public int InvocationID { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
         public Invocation Invocation { get; set; }
+        public bool Deleted { get; set; }
     }
 }

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WitcherTRPG_API.ModelsHelper;
 using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPGWebApplication.Models
 {
-    public class CriticalLevel
+    public class CriticalLevel : WitcherObject
     {
         public int ID { get; set; }
         public int BeatDefenseByValue { get; set; }

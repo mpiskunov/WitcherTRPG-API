@@ -6,11 +6,12 @@ using WitcherTRPG_API.ModelsHelper;
 
 namespace WitcherTRPG_API.Models
 {
-    public class CampaignNote : WitcherObject
+    public class CampaignNote
     {
         public int ID { get; set; }
         public int CampaignID { get; set; }
         public Campaign Campaign { get; set; }
         public string Note { get; set; }
+        public bool Deleted { get; set; }
     }
 }
