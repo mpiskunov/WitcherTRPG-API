@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Traps/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Trap>> DeleteTrap(int id)
         {
             var trap = await _context.Traps.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Traps.Remove(trap);
+            trap.Deleted = true;
+            _context.Traps.Update(trap);
             await _context.SaveChangesAsync();
 
             return trap;

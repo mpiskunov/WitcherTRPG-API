@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterStatistics/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterStatistic>> DeleteCharacterStatistic(int id)
         {
             var characterStatistic = await _context.CharacterStatistics.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterStatistics.Remove(characterStatistic);
+            characterStatistic.Deleted = true;
+            _context.CharacterStatistics.Update(characterStatistic);
             await _context.SaveChangesAsync();
 
             return characterStatistic;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/RitualComponents/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<RitualComponent>> DeleteRitualComponent(int id)
         {
             var ritualComponent = await _context.RitualComponents.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.RitualComponents.Remove(ritualComponent);
+            ritualComponent.Deleted = true;
+            _context.RitualComponents.Update(ritualComponent);
             await _context.SaveChangesAsync();
 
             return ritualComponent;

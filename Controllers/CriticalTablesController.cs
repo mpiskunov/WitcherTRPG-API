@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CriticalTables/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CriticalTable>> DeleteCriticalTable(int id)
         {
             var criticalTable = await _context.CriticalTables.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CriticalTables.Remove(criticalTable);
+            criticalTable.Deleted = true;
+            _context.CriticalTables.Update(criticalTable);
             await _context.SaveChangesAsync();
 
             return criticalTable;

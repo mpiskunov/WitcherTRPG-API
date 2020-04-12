@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Invocations/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Invocation>> DeleteInvocation(int id)
         {
             var invocation = await _context.Invocations.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Invocations.Remove(invocation);
+            invocation.Deleted = true;
+            _context.Invocations.Update(invocation);
             await _context.SaveChangesAsync();
 
             return invocation;

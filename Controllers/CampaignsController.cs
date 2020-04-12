@@ -88,7 +88,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Campaigns/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Campaign>> DeleteCampaign(int id)
         {
             var campaign = await _context.Campaigns.FindAsync(id);
@@ -97,7 +97,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Campaigns.Remove(campaign);
+            campaign.Deleted = true;
+            _context.Campaigns.Update(campaign);
             await _context.SaveChangesAsync();
 
             return campaign;

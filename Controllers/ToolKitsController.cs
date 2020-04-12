@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/ToolKits/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<ToolKit>> DeleteToolKit(int id)
         {
             var toolKit = await _context.ToolKits.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.ToolKits.Remove(toolKit);
+            toolKit.Deleted = true;
+            _context.ToolKits.Update(toolKit);
             await _context.SaveChangesAsync();
 
             return toolKit;

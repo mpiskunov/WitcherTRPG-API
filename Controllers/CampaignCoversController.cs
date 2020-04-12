@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CampaignCovers/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CampaignCover>> DeleteCampaignCover(int id)
         {
             var campaignCover = await _context.CampaignCovers.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CampaignCovers.Remove(campaignCover);
+            campaignCover.Deleted = true;
+            _context.CampaignCovers.Update(campaignCover);
             await _context.SaveChangesAsync();
 
             return campaignCover;

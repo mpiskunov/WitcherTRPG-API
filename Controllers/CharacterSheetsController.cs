@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterSheets/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterSheet>> DeleteCharacterSheet(int id)
         {
             var characterSheet = await _context.CharacterSheets.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterSheets.Remove(characterSheet);
+            characterSheet.Deleted = true;
+            _context.CharacterSheets.Update(characterSheet);
             await _context.SaveChangesAsync();
 
             return characterSheet;

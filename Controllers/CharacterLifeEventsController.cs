@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterLifeEvents/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterLifeEvent>> DeleteCharacterLifeEvent(int id)
         {
             var characterLifeEvent = await _context.CharacterLifeEvents.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterLifeEvents.Remove(characterLifeEvent);
+            characterLifeEvent.Deleted = true;
+            _context.CharacterLifeEvents.Update(characterLifeEvent);
             await _context.SaveChangesAsync();
 
             return characterLifeEvent;

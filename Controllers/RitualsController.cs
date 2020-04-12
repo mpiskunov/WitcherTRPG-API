@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Rituals/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Ritual>> DeleteRitual(int id)
         {
             var ritual = await _context.Rituals.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Rituals.Remove(ritual);
+            ritual.Deleted = true;
+            _context.Rituals.Update(ritual);
             await _context.SaveChangesAsync();
 
             return ritual;

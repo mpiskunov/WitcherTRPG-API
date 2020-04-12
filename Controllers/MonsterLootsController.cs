@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/MonsterLoots/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<MonsterLoot>> DeleteMonsterLoot(int id)
         {
             var monsterLoot = await _context.MonsterLoots.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.MonsterLoots.Remove(monsterLoot);
+            monsterLoot.Deleted = true;
+            _context.MonsterLoots.Update(monsterLoot);
             await _context.SaveChangesAsync();
 
             return monsterLoot;

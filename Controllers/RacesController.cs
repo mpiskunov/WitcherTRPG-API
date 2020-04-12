@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Races/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Race>> DeleteRace(int id)
         {
             var race = await _context.Races.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Races.Remove(race);
+            race.Deleted = true;
+            _context.Races.Update(race);
             await _context.SaveChangesAsync();
 
             return race;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/MonsterAbilities/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<MonsterAbility>> DeleteMonsterAbility(int id)
         {
             var monsterAbility = await _context.MonsterAbilities.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.MonsterAbilities.Remove(monsterAbility);
+            monsterAbility.Deleted = true;
+            _context.MonsterAbilities.Update(monsterAbility);
             await _context.SaveChangesAsync();
 
             return monsterAbility;

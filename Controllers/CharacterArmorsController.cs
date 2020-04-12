@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterArmors/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterArmor>> DeleteCharacterArmor(int id)
         {
             var characterArmor = await _context.CharacterArmors.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterArmors.Remove(characterArmor);
+            characterArmor.Deleted = true;
+            _context.CharacterArmors.Update(characterArmor);
             await _context.SaveChangesAsync();
 
             return characterArmor;

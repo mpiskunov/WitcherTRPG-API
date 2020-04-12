@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/RammingSizeModifiers/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<RammingSizeModifier>> DeleteRammingSizeModifier(int id)
         {
             var rammingSizeModifier = await _context.RammingSizeModifiers.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.RammingSizeModifiers.Remove(rammingSizeModifier);
+            rammingSizeModifier.Deleted = true;
+            _context.RammingSizeModifiers.Update(rammingSizeModifier);
             await _context.SaveChangesAsync();
 
             return rammingSizeModifier;

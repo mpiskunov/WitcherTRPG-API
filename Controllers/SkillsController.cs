@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Skills/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Skill>> DeleteSkill(int id)
         {
             var skill = await _context.Skills.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Skills.Remove(skill);
+            skill.Deleted = true;
+            _context.Skills.Update(skill);
             await _context.SaveChangesAsync();
 
             return skill;

@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterInvocations/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterInvocation>> DeleteCharacterInvocation(int id)
         {
             var characterInvocation = await _context.CharacterInvocations.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterInvocations.Remove(characterInvocation);
+            characterInvocation`.Deleted = true;
+            _context.CharacterInvocations.Update(characterInvocation);
             await _context.SaveChangesAsync();
 
             return characterInvocation;

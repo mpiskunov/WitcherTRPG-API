@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/PlacesOfPowers/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<PlacesOfPower>> DeletePlacesOfPower(int id)
         {
             var placesOfPower = await _context.PlacesOfPowers.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.PlacesOfPowers.Remove(placesOfPower);
+            placesOfPower.Deleted = true;
+            _context.PlacesOfPowers.Update(placesOfPower);
             await _context.SaveChangesAsync();
 
             return placesOfPower;

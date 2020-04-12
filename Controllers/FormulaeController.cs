@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Formulae/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Formulae>> DeleteFormulae(int id)
         {
             var formulae = await _context.Formulaes.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Formulaes.Remove(formulae);
+            formulae.Deleted = true;
+            _context.Formulaes.Update(formulae);
             await _context.SaveChangesAsync();
 
             return formulae;

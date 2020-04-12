@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CraftingComponents/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CraftingComponent>> DeleteCraftingComponent(int id)
         {
             var craftingComponent = await _context.CraftingComponents.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CraftingComponents.Remove(craftingComponent);
+            craftingComponent.Deleted = true;
+            _context.CraftingComponents.Update(craftingComponent);
             await _context.SaveChangesAsync();
 
             return craftingComponent;

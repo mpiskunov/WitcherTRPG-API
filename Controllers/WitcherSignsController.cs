@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/WitcherSigns/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<WitcherSign>> DeleteWitcherSign(int id)
         {
             var witcherSign = await _context.WitcherSigns.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.WitcherSigns.Remove(witcherSign);
+            witcherSign.Deleted = true;
+            _context.WitcherSigns.Update(witcherSign);
             await _context.SaveChangesAsync();
 
             return witcherSign;

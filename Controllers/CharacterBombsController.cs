@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterBombs/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterBomb>> DeleteCharacterBomb(int id)
         {
             var characterBomb = await _context.CharacterBombs.FindAsync(id);
@@ -109,8 +109,9 @@ namespace WitcherTRPG_API.Controllers
             {
                 return NotFound();
             }
-
-            _context.CharacterBombs.Remove(characterBomb);
+                
+            characterBomb.Deleted = true;
+            _context.CharacterBombs.Update(characterBomb);
             await _context.SaveChangesAsync();
 
             return characterBomb;

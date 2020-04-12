@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/DefiningSkillTables/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<DefiningSkillTable>> DeleteDefiningSkillTable(int id)
         {
             var definingSkillTable = await _context.DefiningSkillTables.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.DefiningSkillTables.Remove(definingSkillTable);
+            definingSkillTable.Deleted = true;
+            _context.DefiningSkillTables.Update(definingSkillTable);
             await _context.SaveChangesAsync();
 
             return definingSkillTable;

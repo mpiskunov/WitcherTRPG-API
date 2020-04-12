@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterGeneralGears/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterGeneralGear>> DeleteCharacterGeneralGear(int id)
         {
             var characterGeneralGear = await _context.CharacterGeneralGears.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterGeneralGears.Remove(characterGeneralGear);
+            characterGeneralGear.Deleted = true;
+            _context.CharacterGeneralGears.Update(characterGeneralGear);
             await _context.SaveChangesAsync();
 
             return characterGeneralGear;

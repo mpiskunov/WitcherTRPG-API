@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/RacialPerks/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<RacialPerk>> DeleteRacialPerk(int id)
         {
             var racialPerk = await _context.RacialPerks.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.RacialPerks.Remove(racialPerk);
+            racialPerk.Deleted = true;
+            _context.RacialPerks.Update(racialPerk);
             await _context.SaveChangesAsync();
 
             return racialPerk;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Statistics/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Statistic>> DeleteStatistic(int id)
         {
             var statistic = await _context.Statistics.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Statistics.Remove(statistic);
+            statistic.Deleted = true;
+            _context.Statistics.Update(statistic);
             await _context.SaveChangesAsync();
 
             return statistic;

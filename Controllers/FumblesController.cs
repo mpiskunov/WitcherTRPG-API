@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Fumbles/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Fumble>> DeleteFumble(int id)
         {
             var fumble = await _context.Fumbles.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Fumbles.Remove(fumble);
+            fumble.Deleted = true;
+            _context.Fumbles.Update(fumble);
             await _context.SaveChangesAsync();
 
             return fumble;

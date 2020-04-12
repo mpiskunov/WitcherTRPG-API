@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/AlchemicalSubstances/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<AlchemicalSubstance>> DeleteAlchemicalSubstance(int id)
         {
             var alchemicalSubstance = await _context.AlchemicalSubstances.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.AlchemicalSubstances.Remove(alchemicalSubstance);
+            alchemicalSubstance.Deleted = true;
+            _context.AlchemicalSubstances.Update(alchemicalSubstance);
             await _context.SaveChangesAsync();
 
             return alchemicalSubstance;

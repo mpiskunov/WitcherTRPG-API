@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CriticalLevels/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CriticalLevel>> DeleteCriticalLevel(int id)
         {
             var criticalLevel = await _context.CriticalLevels.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CriticalLevels.Remove(criticalLevel);
+            criticalLevel.Deleted = true;
+            _context.CriticalLevels.Update(criticalLevel);
             await _context.SaveChangesAsync();
 
             return criticalLevel;

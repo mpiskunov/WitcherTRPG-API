@@ -6,54 +6,54 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WitcherTRPGWebApplication.Data;
-using WitcherTRPGWebApplication.Models;
+using WitcherTRPG_API.Models;
 
 namespace WitcherTRPG_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CharacterToolKitsController : ControllerBase
+    public class MonsterStatisticsController : ControllerBase
     {
         private readonly WitcherContext _context;
 
-        public CharacterToolKitsController(WitcherContext context)
+        public MonsterStatisticsController(WitcherContext context)
         {
             _context = context;
         }
 
-        // GET: api/CharacterToolKits
+        // GET: api/MonsterStatistics
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CharacterToolKit>>> GetCharacterToolKits()
+        public async Task<ActionResult<IEnumerable<MonsterStatistic>>> GetMonsterStatistics()
         {
-            return await _context.CharacterToolKits.ToListAsync();
+            return await _context.MonsterStatistics.ToListAsync();
         }
 
-        // GET: api/CharacterToolKits/5
+        // GET: api/MonsterStatistics/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CharacterToolKit>> GetCharacterToolKit(int id)
+        public async Task<ActionResult<MonsterStatistic>> GetMonsterStatistic(int id)
         {
-            var characterToolKit = await _context.CharacterToolKits.FindAsync(id);
+            var monsterStatistic = await _context.MonsterStatistics.FindAsync(id);
 
-            if (characterToolKit == null)
+            if (monsterStatistic == null)
             {
                 return NotFound();
             }
 
-            return characterToolKit;
+            return monsterStatistic;
         }
 
-        // PUT: api/CharacterToolKits/5
+        // PUT: api/MonsterStatistics/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacterToolKit(int id, CharacterToolKit characterToolKit)
+        public async Task<IActionResult> PutMonsterStatistic(int id, MonsterStatistic monsterStatistic)
         {
-            if (id != characterToolKit.CharacterSheetID)
+            if (id != monsterStatistic.MonsterID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(characterToolKit).State = EntityState.Modified;
+            _context.Entry(monsterStatistic).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WitcherTRPG_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CharacterToolKitExists(id))
+                if (!MonsterStatisticExists(id))
                 {
                     return NotFound();
                 }
@@ -74,20 +74,20 @@ namespace WitcherTRPG_API.Controllers
             return NoContent();
         }
 
-        // POST: api/CharacterToolKits
+        // POST: api/MonsterStatistics
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<CharacterToolKit>> PostCharacterToolKit(CharacterToolKit characterToolKit)
+        public async Task<ActionResult<MonsterStatistic>> PostMonsterStatistic(MonsterStatistic monsterStatistic)
         {
-            _context.CharacterToolKits.Add(characterToolKit);
+            _context.MonsterStatistics.Add(monsterStatistic);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (CharacterToolKitExists(characterToolKit.CharacterSheetID))
+                if (MonsterStatisticExists(monsterStatistic.MonsterID))
                 {
                     return Conflict();
                 }
@@ -97,29 +97,29 @@ namespace WitcherTRPG_API.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCharacterToolKit", new { id = characterToolKit.CharacterSheetID }, characterToolKit);
+            return CreatedAtAction("GetMonsterStatistic", new { id = monsterStatistic.MonsterID }, monsterStatistic);
         }
 
-        // DELETE: api/CharacterToolKits/5
+        // DELETE: api/MonsterStatistics/5
         [HttpPut("[action]/{id}")]
-        public async Task<ActionResult<CharacterToolKit>> DeleteCharacterToolKit(int id)
+        public async Task<ActionResult<MonsterStatistic>> DeleteMonsterStatistic(int id)
         {
-            var characterToolKit = await _context.CharacterToolKits.FindAsync(id);
-            if (characterToolKit == null)
+            var monsterStatistic = await _context.MonsterStatistics.FindAsync(id);
+            if (monsterStatistic == null)
             {
                 return NotFound();
             }
 
-            characterToolKit.Deleted = true;
-            _context.CharacterToolKits.Update(characterToolKit);
+            monsterStatistic.Deleted = true;
+            _context.MonsterStatistics.Update(monsterStatistic);
             await _context.SaveChangesAsync();
 
-            return characterToolKit;
+            return monsterStatistic;
         }
 
-        private bool CharacterToolKitExists(int id)
+        private bool MonsterStatisticExists(int id)
         {
-            return _context.CharacterToolKits.Any(e => e.CharacterSheetID == id);
+            return _context.MonsterStatistics.Any(e => e.MonsterID == id);
         }
     }
 }

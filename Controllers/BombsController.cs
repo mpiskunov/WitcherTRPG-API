@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Bombs/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Bomb>> DeleteBomb(int id)
         {
             var bomb = await _context.Bombs.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Bombs.Remove(bomb);
+            bomb.Deleted = true;
+            _context.Bombs.Update(bomb);
             await _context.SaveChangesAsync();
 
             return bomb;

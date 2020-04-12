@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CommonCovers/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CommonCover>> DeleteCommonCover(int id)
         {
             var commonCover = await _context.CommonCovers.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CommonCovers.Remove(commonCover);
+            commonCover.Deleted = true;
+            _context.CommonCovers.Update(commonCover);
             await _context.SaveChangesAsync();
 
             return commonCover;

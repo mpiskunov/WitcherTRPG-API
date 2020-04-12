@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterEarlyLifeNotes/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterEarlyLifeNote>> DeleteCharacterEarlyLifeNote(int id)
         {
             var characterEarlyLifeNote = await _context.CharacterEarlyLifeNotes.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterEarlyLifeNotes.Remove(characterEarlyLifeNote);
+            characterEarlyLifeNote.Deleted = true;
+            _context.CharacterEarlyLifeNotes.Update(characterEarlyLifeNote);
             await _context.SaveChangesAsync();
 
             return characterEarlyLifeNote;

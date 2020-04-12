@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Ingredients/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Ingredient>> DeleteIngredient(int id)
         {
             var ingredient = await _context.Ingredients.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Ingredients.Remove(ingredient);
+            ingredient.Deleted = true;
+            _context.Ingredients.Update(ingredient);
             await _context.SaveChangesAsync();
 
             return ingredient;

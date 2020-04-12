@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterSpells/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterSpell>> DeleteCharacterSpell(int id)
         {
             var characterSpell = await _context.CharacterSpells.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterSpells.Remove(characterSpell);
+            characterSpell.Deleted = true;
+            _context.CharacterSpells.Update(characterSpell);
             await _context.SaveChangesAsync();
 
             return characterSpell;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterRunes/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterRune>> DeleteCharacterRune(int id)
         {
             var characterRune = await _context.CharacterRunes.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterRunes.Remove(characterRune);
+            characterRune.Deleted = true;
+            _context.CharacterRunes.Update(characterRune);
             await _context.SaveChangesAsync();
 
             return characterRune;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Professions/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Profession>> DeleteProfession(int id)
         {
             var profession = await _context.Professions.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Professions.Remove(profession);
+            profession.Deleted = true;
+            _context.Professions.Update(profession);
             await _context.SaveChangesAsync();
 
             return profession;

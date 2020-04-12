@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/DamageLocations/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<DamageLocation>> DeleteDamageLocation(int id)
         {
             var damageLocation = await _context.DamageLocations.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.DamageLocations.Remove(damageLocation);
+            damageLocation.Deleted = true;
+            _context.DamageLocations.Update(damageLocation);
             await _context.SaveChangesAsync();
 
             return damageLocation;

@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterServices/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterService>> DeleteCharacterService(int id)
         {
             var characterService = await _context.CharacterServices.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterServices.Remove(characterService);
+            characterService.Deleted = true;
+            _context.CharacterServices.Update(characterService);
             await _context.SaveChangesAsync();
 
             return characterService;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterMount_Vehicle/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterMount_Vehicle>> DeleteCharacterMount_Vehicle(int id)
         {
             var characterMount_Vehicle = await _context.CharacterMount_Vehicles.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterMount_Vehicles.Remove(characterMount_Vehicle);
+            characterMount_Vehicle.Deleted = true;
+            _context.CharacterMount_Vehicles.Update(characterMount_Vehicle);
             await _context.SaveChangesAsync();
 
             return characterMount_Vehicle;

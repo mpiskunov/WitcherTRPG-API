@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterAmmunitions/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterAmmunition>> DeleteCharacterAmmunition(int id)
         {
             var characterAmmunition = await _context.CharacterAmmunitions.FindAsync(id);
@@ -109,8 +109,9 @@ namespace WitcherTRPG_API.Controllers
             {
                 return NotFound();
             }
-
-            _context.CharacterAmmunitions.Remove(characterAmmunition);
+            
+            characterAmmunition.Deleted = true;
+            _context.CharacterAmmunitions.Update(characterAmmunition);
             await _context.SaveChangesAsync();
 
             return characterAmmunition;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/MonsterVulnerabilities/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<MonsterVulnerability>> DeleteMonsterVulnerability(int id)
         {
             var monsterVulnerability = await _context.MonsterVulnerabilities.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.MonsterVulnerabilities.Remove(monsterVulnerability);
+            monsterVulnerability.Deleted = true;
+            _context.MonsterVulnerabilities.Update(monsterVulnerability);
             await _context.SaveChangesAsync();
 
             return monsterVulnerability;

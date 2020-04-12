@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterEffects/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterEffect>> DeleteCharacterEffect(int id)
         {
             var characterEffect = await _context.CharacterEffects.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterEffects.Remove(characterEffect);
+            characterEffect.Deleted = true;
+            _context.CharacterEffects.Update(characterEffect);
             await _context.SaveChangesAsync();
 
             return characterEffect;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/RangeAndTargetDCs/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<RangeAndTargetDC>> DeleteRangeAndTargetDC(int id)
         {
             var rangeAndTargetDC = await _context.RangeAndTargetDCs.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.RangeAndTargetDCs.Remove(rangeAndTargetDC);
+            rangeAndTargetDC.Deleted = true;
+            _context.RangeAndTargetDCs.Update(rangeAndTargetDC);
             await _context.SaveChangesAsync();
 
             return rangeAndTargetDC;

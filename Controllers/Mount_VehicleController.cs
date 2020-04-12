@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/Mount_Vehicle/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Mount_Vehicle>> DeleteMount_Vehicle(int id)
         {
             var mount_Vehicle = await _context.Mount_Vehicles.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.Mount_Vehicles.Remove(mount_Vehicle);
+            mount_Vehicle.Deleted = true;
+            _context.Mount_Vehicles.Update(mount_Vehicle);
             await _context.SaveChangesAsync();
 
             return mount_Vehicle;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/AttackModifiers/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<AttackModifier>> DeleteAttackModifier(int id)
         {
             var attackModifier = await _context.AttackModifiers.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.AttackModifiers.Remove(attackModifier);
+            attackModifier.Deleted = true;
+            _context.AttackModifiers.Update(attackModifier);
             await _context.SaveChangesAsync();
 
             return attackModifier;

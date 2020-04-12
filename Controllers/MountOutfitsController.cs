@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/MountOutfits/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<MountOutfit>> DeleteMountOutfit(int id)
         {
             var mountOutfit = await _context.MountOutfits.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.MountOutfits.Remove(mountOutfit);
+            mountOutfit.Deleted = true;
+            _context.MountOutfits.Update(mountOutfit);
             await _context.SaveChangesAsync();
 
             return mountOutfit;

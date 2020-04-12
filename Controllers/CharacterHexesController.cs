@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterHexes/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterHex>> DeleteCharacterHex(int id)
         {
             var characterHex = await _context.CharacterHexs.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterHexs.Remove(characterHex);
+            characterHex.Deleted = true;
+            _context.CharacterHexs.Update(characterHex);
             await _context.SaveChangesAsync();
 
             return characterHex;

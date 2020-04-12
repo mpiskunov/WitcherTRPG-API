@@ -6,54 +6,54 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WitcherTRPGWebApplication.Data;
-using WitcherTRPGWebApplication.Models;
+using WitcherTRPG_API.Models;
 
 namespace WitcherTRPG_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BombFormulaesController : ControllerBase
+    public class SourcesController : ControllerBase
     {
         private readonly WitcherContext _context;
 
-        public BombFormulaesController(WitcherContext context)
+        public SourcesController(WitcherContext context)
         {
             _context = context;
         }
 
-        // GET: api/BombFormulaes
+        // GET: api/Sources
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BombFormulae>>> GetBombFormulaes()
+        public async Task<ActionResult<IEnumerable<Source>>> GetSources()
         {
-            return await _context.BombFormulaes.ToListAsync();
+            return await _context.Sources.ToListAsync();
         }
 
-        // GET: api/BombFormulaes/5
+        // GET: api/Sources/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<BombFormulae>> GetBombFormulae(int id)
+        public async Task<ActionResult<Source>> GetSource(int id)
         {
-            var bombFormulae = await _context.BombFormulaes.FindAsync(id);
+            var source = await _context.Sources.FindAsync(id);
 
-            if (bombFormulae == null)
+            if (source == null)
             {
                 return NotFound();
             }
 
-            return bombFormulae;
+            return source;
         }
 
-        // PUT: api/BombFormulaes/5
+        // PUT: api/Sources/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBombFormulae(int id, BombFormulae bombFormulae)
+        public async Task<IActionResult> PutSource(int id, Source source)
         {
-            if (id != bombFormulae.ID)
+            if (id != source.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(bombFormulae).State = EntityState.Modified;
+            _context.Entry(source).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WitcherTRPG_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BombFormulaeExists(id))
+                if (!SourceExists(id))
                 {
                     return NotFound();
                 }
@@ -74,38 +74,38 @@ namespace WitcherTRPG_API.Controllers
             return NoContent();
         }
 
-        // POST: api/BombFormulaes
+        // POST: api/Sources
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<BombFormulae>> PostBombFormulae(BombFormulae bombFormulae)
+        public async Task<ActionResult<Source>> PostSource(Source source)
         {
-            _context.BombFormulaes.Add(bombFormulae);
+            _context.Sources.Add(source);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBombFormulae", new { id = bombFormulae.ID }, bombFormulae);
+            return CreatedAtAction("GetSource", new { id = source.ID }, source);
         }
 
-        // DELETE: api/BombFormulaes/5
+        // DELETE: api/Sources/5
         [HttpPut("[action]/{id}")]
-        public async Task<ActionResult<BombFormulae>> DeleteBombFormulae(int id)
+        public async Task<ActionResult<Source>> DeleteSource(int id)
         {
-            var bombFormulae = await _context.BombFormulaes.FindAsync(id);
-            if (bombFormulae == null)
+            var source = await _context.Sources.FindAsync(id);
+            if (source == null)
             {
                 return NotFound();
             }
 
-            bombFormulae.Deleted = true;
-            _context.BombFormulaes.Update(bombFormulae);
+            source.Deleted = true;
+            _context.Sources.Update(source);
             await _context.SaveChangesAsync();
 
-            return bombFormulae;
+            return source;
         }
 
-        private bool BombFormulaeExists(int id)
+        private bool SourceExists(int id)
         {
-            return _context.BombFormulaes.Any(e => e.ID == id);
+            return _context.Sources.Any(e => e.ID == id);
         }
     }
 }

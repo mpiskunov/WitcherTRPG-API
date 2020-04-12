@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterCampaignNotes/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterCampaignNote>> DeleteCharacterCampaignNote(int id)
         {
             var characterCampaignNote = await _context.CharacterCampaignNotes.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterCampaignNotes.Remove(characterCampaignNote);
+            characterCampaignNote.Deleted = true;
+            _context.CharacterCampaignNotes.Update(characterCampaignNote);
             await _context.SaveChangesAsync();
 
             return characterCampaignNote;

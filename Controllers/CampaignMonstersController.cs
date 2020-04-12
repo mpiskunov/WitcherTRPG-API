@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CampaignMonsters/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CampaignMonster>> DeleteCampaignMonster(int id)
         {
             var campaignMonster = await _context.CampaignMonsters.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CampaignMonsters.Remove(campaignMonster);
+            campaignMonster.Deleted = true;
+            _context.CampaignMonsters.Update(campaignMonster);
             await _context.SaveChangesAsync();
 
             return campaignMonster;

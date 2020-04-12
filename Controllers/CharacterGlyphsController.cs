@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/CharacterGlyphs/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<CharacterGlyph>> DeleteCharacterGlyph(int id)
         {
             var characterGlyph = await _context.CharacterGlyphs.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.CharacterGlyphs.Remove(characterGlyph);
+            characterGlyph.Deleted = true;
+            _context.CharacterGlyphs.Update(characterGlyph);
             await _context.SaveChangesAsync();
 
             return characterGlyph;

@@ -87,7 +87,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/TrapDiagramComponents/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<TrapDiagramComponent>> DeleteTrapDiagramComponent(int id)
         {
             var trapDiagramComponent = await _context.TrapDiagramComponents.FindAsync(id);
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.TrapDiagramComponents.Remove(trapDiagramComponent);
+            trapDiagramComponent.Deleted = true;
+            _context.TrapDiagramComponents.Update(trapDiagramComponent);
             await _context.SaveChangesAsync();
 
             return trapDiagramComponent;

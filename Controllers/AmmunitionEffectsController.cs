@@ -101,7 +101,7 @@ namespace WitcherTRPG_API.Controllers
         }
 
         // DELETE: api/AmmunitionEffects/5
-        [HttpDelete("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<AmmunitionEffect>> DeleteAmmunitionEffect(int id)
         {
             var ammunitionEffect = await _context.AmmunitionEffects.FindAsync(id);
@@ -110,7 +110,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.AmmunitionEffects.Remove(ammunitionEffect);
+            ammunitionEffect.Deleted = true;
+            _context.AmmunitionEffects.Update(ammunitionEffect);
             await _context.SaveChangesAsync();
 
             return ammunitionEffect;
