@@ -110,7 +110,7 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            characterInvocation`.Deleted = true;
+            characterInvocation.Deleted = true;
             _context.CharacterInvocations.Update(characterInvocation);
             await _context.SaveChangesAsync();
 

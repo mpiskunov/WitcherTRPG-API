@@ -96,7 +96,7 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            source.Deleted = true;
+            //source.Deleted = true;
             _context.Sources.Update(source);
             await _context.SaveChangesAsync();
 

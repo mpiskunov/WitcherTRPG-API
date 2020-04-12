@@ -97,7 +97,7 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            campaign.Deleted = true;
+            //campaign.Deleted = true;
             _context.Campaigns.Update(campaign);
             await _context.SaveChangesAsync();
 
