@@ -212,5 +212,6 @@ namespace WitcherTRPGWebApplication.Data
         public DbSet<MonsterStatistic> MonsterStatistics { get; set; }
         public DbSet<MonsterDerivedStatistic> MonsterDerivedStatistics { get; set; }
         public DbSet<CharacterDerivedStatistic> CharacterDerivedStatistics { get; set; }
+        public DbSet<WitcherTRPG_API.Models.DerivedStatistic> DerivedStatistic { get; set; }
     }
 }

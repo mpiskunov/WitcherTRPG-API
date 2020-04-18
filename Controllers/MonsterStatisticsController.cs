@@ -25,7 +25,7 @@ namespace WitcherTRPG_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MonsterStatistic>>> GetMonsterStatistics()
         {
-            return await _context.MonsterStatistics.ToListAsync();
+            return await _context.MonsterStatistics.Include(ms => ms.Statistic).ToListAsync();
         }
 
         // GET: api/MonsterStatistics/5
