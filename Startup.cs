@@ -44,6 +44,9 @@ namespace WitcherTRPG_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Witcher API", Version = "v1" });
             });
+
+            // Register the cache option.
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
