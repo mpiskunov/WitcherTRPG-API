@@ -89,6 +89,7 @@ namespace WitcherTRPG_API.Controllers
             if (!_memoryCache.TryGetValue("MonsterInfo", out vmList))
             {
                 _ = await PopulateMonsterViewModels();
+                vmList = _memoryCache.Get("MonsterInfo") as List<MonsterViewModel>;
             }
             return vmList.Where(vm => vm.Monster.ID == id).FirstOrDefault();
         }

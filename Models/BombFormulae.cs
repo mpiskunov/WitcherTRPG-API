@@ -14,5 +14,6 @@ namespace WitcherTRPGWebApplication.Models
         public string Time { get; set; }
         public decimal Investment { get; set; }
         public decimal Cost { get; set; }
+        public Bomb Bomb { get; set; }
     }
 }
