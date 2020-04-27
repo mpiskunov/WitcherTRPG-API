@@ -2,57 +2,62 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WitcherTRPGWebApplication.Data;
 
-namespace WitcherTRPGWebApplication.Migrations
+namespace WitcherTRPG_API.Migrations
 {
     [DbContext(typeof(WitcherContext))]
-    [Migration("20200405044316_addedrolltype")]
-    partial class addedrolltype
+    [Migration("20200427202100_initialcommit")]
+    partial class initialcommit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Interfaces.CraftingComponent", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("CraftingComponentType")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ForageDC")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Quantity")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Rarity")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("CraftingComponents");
                 });
@@ -61,28 +66,35 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("AlchemicalItems");
                 });
@@ -91,13 +103,20 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("AlchemicalSubstances");
                 });
@@ -106,11 +125,10 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("AttackType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
@@ -119,21 +137,29 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("DefaultReliability")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Ammunitions");
                 });
@@ -146,12 +172,20 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("EffectID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("AmmunitionID", "EffectID");
 
                     b.HasIndex("EffectID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("AmmunitionEffects");
                 });
@@ -160,20 +194,22 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("DefaultReliability")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("EncumberanceValue")
                         .HasColumnType("int");
@@ -182,18 +218,23 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StoppingPower")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("WeightClassification")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Armors");
                 });
@@ -206,7 +247,15 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("ArmorClassification")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.HasKey("ArmorID", "ArmorClassification");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("ArmorCovers");
                 });
@@ -219,12 +268,20 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("EffectID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ArmorID", "EffectID");
 
                     b.HasIndex("EffectID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("ArmorEffects");
                 });
@@ -233,37 +290,44 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
 
                     b.Property<bool>("BludgeoningResistant")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("PiercingResistant")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<bool>("SlashingResistant")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StoppingPower")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("ArmorEnhancements");
                 });
@@ -272,16 +336,23 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("AttackModifiers");
                 });
@@ -290,31 +361,38 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("AttackType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Damage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Bombs");
                 });
@@ -323,25 +401,34 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("BombID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("CraftDC")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<decimal>("Investment")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("BombID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("BombFormulaes");
                 });
@@ -350,8 +437,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -360,11 +446,19 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ComponentName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("BombFormulaeID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("BombFormulaeComponents");
                 });
@@ -379,6 +473,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("CharacterSheetID", "AlchemicalItemID");
 
@@ -401,8 +498,11 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsEquipped")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Reliability")
                         .HasColumnType("int");
@@ -418,8 +518,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("ArmorID")
                         .HasColumnType("int");
@@ -427,17 +526,20 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("EnhancementSlotsOpen")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsEquipped")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("StoppingPower")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
 
@@ -452,17 +554,19 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterArmorID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("EffectDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("EffectName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -475,8 +579,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("ArmorEnhancementID")
                         .HasColumnType("int");
@@ -487,8 +590,11 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsEquipped")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("ID");
 
@@ -512,6 +618,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "BombID");
 
                     b.HasIndex("BombID");
@@ -523,17 +632,19 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -550,6 +661,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("DefiningSkillID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("Value")
                         .HasColumnType("int");
 
@@ -564,17 +678,19 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -587,8 +703,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
@@ -598,6 +713,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<int>("CurrentValue")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("EffectID")
                         .HasColumnType("int");
@@ -619,8 +737,11 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("FormulaeID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("RetainedByMemory")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("CharacterSheetID", "FormulaeID");
 
@@ -640,6 +761,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int?>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "GeneralGearID");
 
                     b.HasIndex("GeneralGearID");
@@ -651,8 +775,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int?>("CharacterArmorID")
                         .HasColumnType("int");
@@ -660,11 +783,14 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("GlyphID")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsEquipped")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("ID");
 
@@ -685,6 +811,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("HexID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "HexID");
 
                     b.HasIndex("HexID");
@@ -700,6 +829,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("InvocationID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "InvocationID");
 
                     b.HasIndex("InvocationID");
@@ -711,8 +843,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
@@ -720,8 +851,11 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Decade")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Event")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -734,11 +868,13 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterMount_VehicleID")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("MountOutfitID")
                         .HasColumnType("int");
@@ -756,14 +892,16 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
                     b.Property<int>("Cost")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Health")
                         .HasColumnType("int");
@@ -790,17 +928,19 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -817,6 +957,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("RitualID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "RitualID");
 
                     b.HasIndex("RitualID");
@@ -828,8 +971,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
@@ -837,8 +979,11 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int?>("CharacterWeaponID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsEquipped")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("RuneID")
                         .HasColumnType("int");
@@ -865,6 +1010,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "ServiceID");
 
                     b.HasIndex("ServiceID");
@@ -876,42 +1024,23 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("CharacterSheetID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Affectations")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("CampaignID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Clothing")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Encumbrance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("FeelingsOnPeople")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HairStyle")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ImprovementPoints")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Personality")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ProfessionID")
                         .HasColumnType("int");
@@ -919,18 +1048,7 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("RaceID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValuedPerson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Vigor")
-                        .HasColumnType("int");
-
                     b.HasKey("CharacterSheetID");
-
-                    b.HasIndex("CampaignID");
 
                     b.HasIndex("ProfessionID");
 
@@ -946,6 +1064,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<int>("SkillID")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
@@ -965,6 +1086,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("SpellID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "SpellID");
 
                     b.HasIndex("SpellID");
@@ -979,6 +1103,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<int>("StatisticID")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
@@ -1001,6 +1128,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "SubstanceID");
 
                     b.HasIndex("SubstanceID");
@@ -1018,6 +1148,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("CharacterSheetID", "ToolKitID");
 
@@ -1037,6 +1170,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "TrapID");
 
                     b.HasIndex("TrapID");
@@ -1048,17 +1184,19 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CharacterSheetID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("HasAmmunition")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsEquipped")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Reliability")
                         .HasColumnType("int");
@@ -1070,7 +1208,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
 
@@ -1085,8 +1223,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int?>("CharacterArmorID")
                         .HasColumnType("int");
@@ -1094,11 +1231,14 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("CharacterWeaponID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("EffectDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("EffectName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -1115,6 +1255,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("WitcherSignID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "WitcherSignID");
 
                     b.HasIndex("WitcherSignID");
@@ -1126,16 +1269,23 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StoppingPower")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("CommonCovers");
                 });
@@ -1144,8 +1294,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("BeatDefenseByValue")
                         .HasColumnType("int");
@@ -1156,10 +1305,18 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("CriticalWoundType")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("MonsterAnatomyType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("CriticalLevels");
                 });
@@ -1168,25 +1325,32 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("DamageModifier")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsMonster")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Penalty")
                         .HasColumnType("int");
 
                     b.Property<string>("Roll")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("DamageLocations");
                 });
@@ -1195,27 +1359,34 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsBaseSkill")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("ProfessionID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.Property<int?>("StatisticID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ProfessionID");
+
+                    b.HasIndex("SourceID");
 
                     b.HasIndex("StatisticID");
 
@@ -1226,19 +1397,26 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("DefiningSkillID")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("NextDefiningSkillID")
                         .HasColumnType("int");
 
                     b.Property<string>("PathName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("DefiningSkillLinks");
                 });
@@ -1247,11 +1425,10 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("DefiningSkillFilter")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("DefiningSkillID")
                         .HasColumnType("int");
@@ -1259,21 +1436,29 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("DefiningSkillTableType")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("FirstColumn")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("FirstColumnValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("SecondColumn")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("SecondColumnValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("DefiningSkillID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("DefiningSkillTables");
                 });
@@ -1282,60 +1467,57 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("Effects");
-                });
-
-            modelBuilder.Entity("WitcherTRPGWebApplication.Models.EffectPackage", b =>
-                {
-                    b.Property<int>("EffectPackageID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EffectID")
-                        .HasColumnType("int");
-
-                    b.HasKey("EffectPackageID");
-
-                    b.HasIndex("EffectID");
-
-                    b.ToTable("EffectPackages");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.Formulae", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("AlchemyDC")
                         .HasColumnType("int");
 
                     b.Property<string>("Cost")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("SkillLevel")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Formulaes");
                 });
@@ -1344,8 +1526,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("AlchemyCategory")
                         .HasColumnType("int");
@@ -1353,12 +1534,20 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("FormulaeID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("FormulaeID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("FormulaeComponents");
                 });
@@ -1367,25 +1556,32 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("GeneralGearClassification")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("GeneralGears");
                 });
@@ -1394,22 +1590,29 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Glyphs");
                 });
@@ -1418,25 +1621,32 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Danger")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("RequirementToLift")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StaminaCost")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Hexs");
                 });
@@ -1445,8 +1655,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("AlchemicalSubstanceID")
                         .HasColumnType("int");
@@ -1455,26 +1664,34 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ForageDC")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Quantity")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("AlchemicalSubstanceID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Ingredients");
                 });
@@ -1483,28 +1700,33 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Defense")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Deity")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("SkillLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.Property<int>("SpellTypeClassification")
@@ -1515,6 +1737,8 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("Invocations");
                 });
 
@@ -1522,19 +1746,26 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("LightLevelModifiers");
                 });
@@ -1543,28 +1774,35 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MountOutfitClassification")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("MountOutfits");
                 });
@@ -1573,8 +1811,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int?>("Athletics")
                         .HasColumnType("int");
@@ -1583,21 +1820,29 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Health")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Speed")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Mount_Vehicles");
                 });
@@ -1606,22 +1851,29 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Benefit")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("PlacesOfPowers");
                 });
@@ -1630,69 +1882,58 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("DefaultVigorValue")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ProfessionCategory")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Professions");
-                });
-
-            modelBuilder.Entity("WitcherTRPGWebApplication.Models.ProfessionSkillPackage", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ProfessionID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SkillID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SkillName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProfessionID");
-
-                    b.HasIndex("SkillID");
-
-                    b.ToTable("SkillPackages");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.Race", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("RaceType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Races");
                 });
@@ -1701,21 +1942,28 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("RaceID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
                     b.HasIndex("RaceID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("RacialPerks");
                 });
@@ -1724,16 +1972,23 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("RammingSizeModifiers");
                 });
@@ -1742,14 +1997,19 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("TargetDC")
                         .HasColumnType("int");
@@ -1759,6 +2019,8 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("RangeAndTargetDCs");
                 });
 
@@ -1766,23 +2028,28 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("DifficultyCheck")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("PreperationTime")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("SpellDifficultyClassification")
                         .HasColumnType("int");
@@ -1792,6 +2059,8 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("Rituals");
                 });
 
@@ -1799,21 +2068,28 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int?>("Amount")
                         .HasColumnType("int");
 
                     b.Property<string>("ComponentName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("RitualID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("RitualID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("RitualComponents");
                 });
@@ -1822,22 +2098,29 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Runes");
                 });
@@ -1846,24 +2129,31 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("GeneralGearID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("SkillBase")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
                     b.HasIndex("GeneralGearID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Services");
                 });
@@ -1872,14 +2162,16 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("PointsPerLevel")
                         .HasColumnType("int");
@@ -1887,10 +2179,15 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("SkillCategory")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<int>("StatisticID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.HasIndex("StatisticID");
 
@@ -1901,23 +2198,28 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Defense")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("SpellDifficultyClassification")
                         .HasColumnType("int");
@@ -1930,6 +2232,8 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("Spells");
                 });
 
@@ -1937,19 +2241,26 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatisticCategory")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Statistics");
                 });
@@ -1958,31 +2269,38 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
 
                     b.Property<string>("Concealment")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("ToolKits");
                 });
@@ -1991,31 +2309,38 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Damage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Traps");
                 });
@@ -2024,25 +2349,32 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("CraftDC")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<decimal>("Investment")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("TrapID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.HasIndex("TrapID");
 
@@ -2053,19 +2385,26 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
                     b.Property<string>("ComponentName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("TrapDiagramID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.HasIndex("TrapDiagramID");
 
@@ -2076,11 +2415,10 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("AttackType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Availability")
                         .HasColumnType("int");
@@ -2089,16 +2427,19 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Damage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("DefaultReliability")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Enhancements")
                         .HasColumnType("int");
@@ -2107,10 +2448,13 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("WeaponAccuracy")
                         .HasColumnType("int");
@@ -2119,9 +2463,11 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Weapons");
                 });
@@ -2134,12 +2480,20 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("EffectID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("WeaponID", "EffectID");
 
                     b.HasIndex("EffectID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("WeaponEffects");
                 });
@@ -2148,34 +2502,41 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Defense")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Range")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<int>("SpellTypeClassification")
                         .HasColumnType("int");
 
                     b.Property<string>("StaminaCost")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("WitcherSignClassification")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("WitcherSigns");
                 });
@@ -2184,14 +2545,13 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("CraftingDC")
                         .HasColumnType("int");
@@ -2199,11 +2559,14 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("CraftingDiagramCategory")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<decimal>("Investment")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ObjectReferenceID")
                         .HasColumnType("int");
@@ -2211,10 +2574,15 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("SkillLevel")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("CraftingDiagrams");
                 });
@@ -2230,9 +2598,17 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.HasKey("CraftingDiagramID", "CraftingComponentID");
 
                     b.HasIndex("CraftingComponentID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("CraftingDiagramComponents");
                 });
@@ -2241,16 +2617,23 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effects")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("BladeOils");
                 });
@@ -2259,17 +2642,10 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -2280,8 +2656,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CampaignID")
                         .HasColumnType("int");
@@ -2290,10 +2665,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("StoppingPower")
                         .HasColumnType("int");
@@ -2311,8 +2686,7 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("BODY")
                         .HasColumnType("int");
@@ -2321,16 +2695,16 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CurrentLocation")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("DEX")
                         .HasColumnType("int");
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("EMP")
                         .HasColumnType("int");
@@ -2345,7 +2719,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDead")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("LEAP")
                         .HasColumnType("int");
@@ -2357,7 +2731,7 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("REC")
                         .HasColumnType("int");
@@ -2394,20 +2768,16 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CampaignID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -2427,11 +2797,38 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "BladeOilID");
 
                     b.HasIndex("BladeOilID");
 
                     b.ToTable("CharacterBladeOil");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.CharacterDerivedStatistic", b =>
+                {
+                    b.Property<int>("CharacterSheetID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DerivedStatisticID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("CharacterSheetID", "DerivedStatisticID");
+
+                    b.HasIndex("DerivedStatisticID");
+
+                    b.ToTable("CharacterDerivedStatistics");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.CharacterMutagen", b =>
@@ -2444,6 +2841,9 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("CharacterSheetID", "MutagenID");
 
@@ -2463,6 +2863,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "WitcherDecoctionID");
 
                     b.HasIndex("WitcherDecoctionID");
@@ -2481,6 +2884,9 @@ namespace WitcherTRPGWebApplication.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("CharacterSheetID", "WitcherPotionID");
 
                     b.HasIndex("WitcherPotionID");
@@ -2492,55 +2898,97 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CriticalWoundType")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("EffectDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("EffectTitle")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Roll")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("RollType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Stabilized")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Treated")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("CriticalTables");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.DerivedStatistic", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("DerivedStatisticCategory")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
+
+                    b.ToTable("DerivedStatistic");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.Fumble", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("FumbleType")
                         .HasColumnType("int");
 
                     b.Property<string>("Result")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Roll")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("RollType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Fumbles");
                 });
@@ -2549,91 +2997,47 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("ArmorValue")
                         .HasColumnType("int");
 
-                    b.Property<int>("BODY")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Bounty")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("CRA")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DEX")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EMP")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ENC")
-                        .HasColumnType("int");
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Environment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HP")
-                        .HasColumnType("int");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Height")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("INT")
-                        .HasColumnType("int");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Intelligence")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LEAP")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LUCK")
-                        .HasColumnType("int");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonsterType")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Organization")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("REC")
-                        .HasColumnType("int");
-
-                    b.Property<int>("REF")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RUN")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SPD")
-                        .HasColumnType("int");
-
-                    b.Property<int>("STA")
-                        .HasColumnType("int");
-
-                    b.Property<int>("STUN")
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.Property<string>("Threat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Vigor")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WILL")
-                        .HasColumnType("int");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Weight")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("Monsters");
                 });
@@ -2642,44 +3046,84 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonsterID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
                     b.HasIndex("MonsterID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("MonsterAbilities");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.MonsterDerivedStatistic", b =>
+                {
+                    b.Property<int>("MonsterID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DerivedStatisticID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("MonsterID", "DerivedStatisticID");
+
+                    b.HasIndex("DerivedStatisticID");
+
+                    b.HasIndex("SourceID");
+
+                    b.ToTable("MonsterDerivedStatistics");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterInformation", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonsterID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
                     b.HasIndex("MonsterID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("MonsterInformations");
                 });
@@ -2688,18 +3132,25 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonsterID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("MonsterID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("MonsterLoots");
                 });
@@ -2708,13 +3159,18 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("MonsterID")
                         .HasColumnType("int");
 
                     b.Property<int>("SkillID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.Property<int>("Value")
@@ -2726,28 +3182,63 @@ namespace WitcherTRPGWebApplication.Migrations
 
                     b.HasIndex("SkillID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("MonsterSkills");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.MonsterStatistic", b =>
+                {
+                    b.Property<int>("MonsterID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatisticID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("MonsterID", "StatisticID");
+
+                    b.HasIndex("SourceID");
+
+                    b.HasIndex("StatisticID");
+
+                    b.ToTable("MonsterStatistics");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterVulnerability", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonsterID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
                     b.HasIndex("MonsterID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("MonsterVulnerabilities");
                 });
@@ -2756,27 +3247,34 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Damage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonsterID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("RateOfFire")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("MonsterID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("MonsterWeapons");
                 });
@@ -2785,43 +3283,109 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("AlchemyDC")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("MinorMutation")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("MutagenSource")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MutagenType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("Mutagens");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.ProfessionSkillPackage", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("ProfessionID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SkillID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProfessionID");
+
+                    b.HasIndex("SkillID");
+
+                    b.HasIndex("SourceID");
+
+                    b.ToTable("SkillPackages");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.Source", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Author")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("IsOfficial")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Sources");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.WitcherDecoction", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Effect")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SourceID");
 
                     b.ToTable("WitcherDecoctions");
                 });
@@ -2830,27 +3394,62 @@ namespace WitcherTRPGWebApplication.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Effects")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Toxicity")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SourceID");
+
                     b.ToTable("WitcherPotions");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Interfaces.CraftingComponent", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AlchemicalItem", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AlchemicalSubstance", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Ammunition", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.AmmunitionEffect", b =>
@@ -2866,6 +3465,17 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("EffectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Armor", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.ArmorCover", b =>
@@ -2875,6 +3485,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("ArmorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.ArmorEffect", b =>
@@ -2890,6 +3504,44 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("EffectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.ArmorEnhancement", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.AttackModifier", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Bomb", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.BombFormulae", b =>
+                {
+                    b.HasOne("WitcherTRPGWebApplication.Models.Bomb", "Bomb")
+                        .WithMany()
+                        .HasForeignKey("BombID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.BombFormulaeComponent", b =>
@@ -2899,6 +3551,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("BombFormulaeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.CharacterAlchemicalItem", b =>
@@ -3213,12 +3869,6 @@ namespace WitcherTRPGWebApplication.Migrations
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.CharacterSheet", b =>
                 {
-                    b.HasOne("WitcherTRPG_API.Models.Campaign", "Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WitcherTRPGWebApplication.Models.Profession", "Profession")
                         .WithMany()
                         .HasForeignKey("ProfessionID")
@@ -3359,6 +4009,27 @@ namespace WitcherTRPGWebApplication.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.CommonCover", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.CriticalLevel", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.DamageLocation", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.DefiningSkill", b =>
                 {
                     b.HasOne("WitcherTRPGWebApplication.Models.Profession", "Profession")
@@ -3367,9 +4038,20 @@ namespace WitcherTRPGWebApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+
                     b.HasOne("WitcherTRPGWebApplication.Models.Statistic", "Statistic")
                         .WithMany()
                         .HasForeignKey("StatisticID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.DefiningSkillLink", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.DefiningSkillTable", b =>
@@ -3379,15 +4061,24 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("DefiningSkillID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
-            modelBuilder.Entity("WitcherTRPGWebApplication.Models.EffectPackage", b =>
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Effect", b =>
                 {
-                    b.HasOne("WitcherTRPGWebApplication.Models.Effect", "Effect")
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
                         .WithMany()
-                        .HasForeignKey("EffectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Formulae", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.FormulaeComponent", b =>
@@ -3397,6 +4088,31 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("FormulaeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.GeneralGear", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Glyph", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Hex", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.Ingredient", b =>
@@ -3406,19 +4122,59 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("AlchemicalSubstanceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
-            modelBuilder.Entity("WitcherTRPGWebApplication.Models.ProfessionSkillPackage", b =>
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Invocation", b =>
                 {
-                    b.HasOne("WitcherTRPGWebApplication.Models.Profession", "Profession")
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
                         .WithMany()
-                        .HasForeignKey("ProfessionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SourceID");
+                });
 
-                    b.HasOne("WitcherTRPGWebApplication.Models.Skill", "Skill")
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.LightLevelModifier", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
                         .WithMany()
-                        .HasForeignKey("SkillID");
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.MountOutfit", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Mount_Vehicle", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.PlacesOfPower", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Profession", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Race", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.RacialPerk", b =>
@@ -3428,6 +4184,31 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("RaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.RammingSizeModifier", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.RangeAndTargetDC", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Ritual", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.RitualComponent", b =>
@@ -3437,6 +4218,17 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("RitualID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Rune", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.Service", b =>
@@ -3446,10 +4238,18 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("GeneralGearID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.Skill", b =>
                 {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+
                     b.HasOne("WitcherTRPGWebApplication.Models.Statistic", "Statistic")
                         .WithMany()
                         .HasForeignKey("StatisticID")
@@ -3457,8 +4257,40 @@ namespace WitcherTRPGWebApplication.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Spell", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Statistic", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.ToolKit", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Trap", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.TrapDiagram", b =>
                 {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+
                     b.HasOne("WitcherTRPGWebApplication.Models.Trap", "Trap")
                         .WithMany()
                         .HasForeignKey("TrapID")
@@ -3468,11 +4300,22 @@ namespace WitcherTRPGWebApplication.Migrations
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.TrapDiagramComponent", b =>
                 {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+
                     b.HasOne("WitcherTRPGWebApplication.Models.TrapDiagram", "TrapDiagram")
                         .WithMany()
                         .HasForeignKey("TrapDiagramID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.Weapon", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.Models.WeaponEffect", b =>
@@ -3483,11 +4326,29 @@ namespace WitcherTRPGWebApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+
                     b.HasOne("WitcherTRPGWebApplication.Models.Weapon", "Weapon")
                         .WithMany()
                         .HasForeignKey("WeaponID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.Models.WitcherSign", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPGWebApplication.ModelsHelper.CraftingDiagram", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPGWebApplication.ModelsHelper.CraftingDiagramComponent", b =>
@@ -3503,6 +4364,17 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("CraftingDiagramID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.BladeOil", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.CampaignCover", b =>
@@ -3553,6 +4425,21 @@ namespace WitcherTRPGWebApplication.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WitcherTRPG_API.Models.CharacterDerivedStatistic", b =>
+                {
+                    b.HasOne("WitcherTRPGWebApplication.Models.CharacterSheet", "CharacterSheet")
+                        .WithMany()
+                        .HasForeignKey("CharacterSheetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.DerivedStatistic", "DerivedStatistic")
+                        .WithMany()
+                        .HasForeignKey("DerivedStatisticID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WitcherTRPG_API.Models.CharacterMutagen", b =>
                 {
                     b.HasOne("WitcherTRPGWebApplication.Models.CharacterSheet", "CharacterSheet")
@@ -3598,6 +4485,34 @@ namespace WitcherTRPGWebApplication.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WitcherTRPG_API.Models.CriticalTable", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.DerivedStatistic", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.Fumble", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.Monster", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterAbility", b =>
                 {
                     b.HasOne("WitcherTRPG_API.Models.Monster", "Monster")
@@ -3605,6 +4520,29 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("MonsterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.MonsterDerivedStatistic", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.DerivedStatistic", "DerivedStatistic")
+                        .WithMany()
+                        .HasForeignKey("DerivedStatisticID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Monster", "Monster")
+                        .WithMany()
+                        .HasForeignKey("MonsterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterInformation", b =>
@@ -3614,6 +4552,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("MonsterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterLoot", b =>
@@ -3623,6 +4565,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("MonsterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterSkill", b =>
@@ -3638,6 +4584,29 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("SkillID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.MonsterStatistic", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Monster", "Monster")
+                        .WithMany()
+                        .HasForeignKey("MonsterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+
+                    b.HasOne("WitcherTRPGWebApplication.Models.Statistic", "Statistic")
+                        .WithMany()
+                        .HasForeignKey("StatisticID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterVulnerability", b =>
@@ -3647,6 +4616,10 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("MonsterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 
             modelBuilder.Entity("WitcherTRPG_API.Models.MonsterWeapon", b =>
@@ -3656,6 +4629,48 @@ namespace WitcherTRPGWebApplication.Migrations
                         .HasForeignKey("MonsterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.Mutagen", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.ProfessionSkillPackage", b =>
+                {
+                    b.HasOne("WitcherTRPGWebApplication.Models.Profession", "Profession")
+                        .WithMany()
+                        .HasForeignKey("ProfessionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WitcherTRPGWebApplication.Models.Skill", "Skill")
+                        .WithMany()
+                        .HasForeignKey("SkillID");
+
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.WitcherDecoction", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
+                });
+
+            modelBuilder.Entity("WitcherTRPG_API.Models.WitcherPotion", b =>
+                {
+                    b.HasOne("WitcherTRPG_API.Models.Source", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceID");
                 });
 #pragma warning restore 612, 618
         }

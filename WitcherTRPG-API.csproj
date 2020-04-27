@@ -6,33 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200305013937_addedamounttocrafting.cs" />
-    <Compile Remove="Migrations\20200305013937_addedamounttocrafting.Designer.cs" />
-    <Compile Remove="Migrations\20200305015936_fixedformulaes2.cs" />
-    <Compile Remove="Migrations\20200305015936_fixedformulaes2.Designer.cs" />
-    <Compile Remove="Migrations\20200305034939_addedmodels.cs" />
-    <Compile Remove="Migrations\20200305034939_addedmodels.Designer.cs" />
-    <Compile Remove="Migrations\20200311033909_Addedmonstersandcampaignobj.cs" />
-    <Compile Remove="Migrations\20200311033909_Addedmonstersandcampaignobj.Designer.cs" />
-    <Compile Remove="Migrations\20200311034614_Addedmonstersandcampaignobj.cs" />
-    <Compile Remove="Migrations\20200311034614_Addedmonstersandcampaignobj.Designer.cs" />
-    <Compile Remove="Migrations\20200311034832_Addedmonstersandcampaignobj.cs" />
-    <Compile Remove="Migrations\20200311034832_Addedmonstersandcampaignobj.Designer.cs" />
-    <Compile Remove="Migrations\20200312211731_updatedenums.cs" />
-    <Compile Remove="Migrations\20200312211731_updatedenums.Designer.cs" />
-    <Compile Remove="Migrations\20200312212506_RemovedIntsThatWereEnums.cs" />
-    <Compile Remove="Migrations\20200312212506_RemovedIntsThatWereEnums.Designer.cs" />
-    <Compile Remove="Migrations\20200312214620_renamedenums.cs" />
-    <Compile Remove="Migrations\20200312214620_renamedenums.Designer.cs" />
-    <Compile Remove="Migrations\20200405035742_addedcritsandfumbles.cs" />
-    <Compile Remove="Migrations\20200405035742_addedcritsandfumbles.Designer.cs" />
-    <Compile Remove="Migrations\20200405040006_addedcritsandfumbles.cs" />
-    <Compile Remove="Migrations\20200405040006_addedcritsandfumbles.Designer.cs" />
-    <Compile Remove="Migrations\20200412060233_AddedBasicPropertiesToAllTables.cs" />
-    <Compile Remove="Migrations\20200412060233_AddedBasicPropertiesToAllTables.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />
@@ -45,6 +18,7 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
   </ItemGroup>
 

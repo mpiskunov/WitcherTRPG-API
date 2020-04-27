@@ -38,7 +38,7 @@ namespace WitcherTRPG_API
                         builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                     });
             });
-            services.AddDbContext<WitcherContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WitcherSql")));
+            services.AddDbContext<WitcherContext>(options => options.UseMySql(Configuration.GetConnectionString("WitcherSql")));
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
