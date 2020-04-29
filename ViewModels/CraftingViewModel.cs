@@ -10,7 +10,6 @@ namespace WitcherTRPG_API.ViewModels
 {
     public class CraftingViewModel
     {
-        public IEnumerable<CraftingComponent> CraftingComponents { get; set; }
         public CraftingDiagram CraftingDiagram { get; set; }
         public IEnumerable<CraftingDiagramComponent> CraftingDiagramComponents { get; set; }
     }
