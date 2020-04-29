@@ -11,7 +11,7 @@ using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPG_API.Controllers
 {
-    [Route("api/CompleteArmors")]
+    [Route("api/CompletedArmors")]
     [ApiController]
     public class ArmorViewModelController : ControllerBase
     {
