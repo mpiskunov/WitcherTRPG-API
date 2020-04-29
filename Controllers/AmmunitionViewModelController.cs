@@ -55,7 +55,7 @@ namespace WitcherTRPG_API.Controllers
             {
                 vmList = new List<AmmunitionViewModel>();
                 var ammo = await _context.Ammunitions.ToListAsync();
-                var ammoEffects = await _context.AmmunitionEffects.ToListAsync();
+                var ammoEffects = await _context.AmmunitionEffects.Include(ae => ae.Effect).ToListAsync();
                 foreach (var am in ammo)
                 {
                     var vm = new AmmunitionViewModel

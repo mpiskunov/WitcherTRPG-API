@@ -11,7 +11,7 @@ using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPG_API.Controllers
 {
-    [Route("api/CompleteArmor")]
+    [Route("api/CompleteArmors")]
     [ApiController]
     public class ArmorViewModelController : ControllerBase
     {
@@ -54,7 +54,7 @@ namespace WitcherTRPG_API.Controllers
             {
                 vmList = new List<ArmorViewModel>();
                 var armors = await _context.Armors.ToListAsync();
-                var armorEffects = await _context.ArmorEffects.ToListAsync();
+                var armorEffects = await _context.ArmorEffects.Include(ae => ae.Effect).ToListAsync();
                 var armorCovers = await _context.ArmorCovers.ToListAsync();
                 foreach (var armor in armors)
                 {

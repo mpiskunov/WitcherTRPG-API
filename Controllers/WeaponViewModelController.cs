@@ -40,7 +40,7 @@ namespace WitcherTRPG_API.Controllers
             {
                 vmList = new List<WeaponViewModel>();
                 var weapons = await _context.Weapons.ToListAsync();
-                var wepEffects = await _context.WeaponEffects.ToListAsync();
+                var wepEffects = await _context.WeaponEffects.Include(we => we.Effect).ToListAsync();
                 foreach (var wep in weapons)
                 {
                     var vm = new WeaponViewModel

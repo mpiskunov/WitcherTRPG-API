@@ -11,7 +11,7 @@ using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPG_API.Controllers
 {
-    [Route("api/CompletedBomb")]
+    [Route("api/CompletedBombs")]
     [ApiController]
     public class BombViewModelController : ControllerBase
     {
