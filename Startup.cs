@@ -48,7 +48,7 @@ namespace WitcherTRPG_API
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Witcher API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Witcher API", Version = "v1.1" });
             });
 
             // Register the cache option.
