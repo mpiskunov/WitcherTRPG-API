@@ -86,9 +86,9 @@ namespace WitcherTRPG_API.Controllers
             return CreatedAtAction("GetDerivedStatistic", new { id = derivedStatistic.ID }, derivedStatistic);
         }
 
-        // DELETE: api/DerivedStatistics/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<DerivedStatistic>> DeleteDerivedStatistic(int id)
+        // DELETE: api/Formulae/5
+        [HttpPut("[action]/{id}")]
+        public async Task<ActionResult<DerivedStatistic>> DeleteFormulae(int id)
         {
             var derivedStatistic = await _context.DerivedStatistic.FindAsync(id);
             if (derivedStatistic == null)
@@ -96,7 +96,8 @@ namespace WitcherTRPG_API.Controllers
                 return NotFound();
             }
 
-            _context.DerivedStatistic.Remove(derivedStatistic);
+            derivedStatistic.Deleted = true;
+            _context.DerivedStatistic.Update(derivedStatistic);
             await _context.SaveChangesAsync();
 
             return derivedStatistic;
