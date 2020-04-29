@@ -24,15 +24,29 @@ namespace WitcherTRPG_API.Controllers
             _memoryCache = memoryCache;
         }
 
-        // GET: api/CompleteProfessions
+        // GET: api/CompletedWeapons
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WeaponViewModel>>> GetCompletedWeapons()
         {
-            var weapons = await PopulatAllWeaponsViewModels();
+            var weapons = await PopulateAllWeaponsViewModels();
             return weapons;
         }
 
-        private async Task<List<WeaponViewModel>> PopulatAllWeaponsViewModels()
+        // GET: api/CompletedWeapons/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<WeaponViewModel>> GetWeaponViewModel(int id)
+        {
+            var weaponViewModel = await PopulateWeaponViewModel(id);
+
+            if (weaponViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return weaponViewModel;
+        }
+
+        private async Task<List<WeaponViewModel>> PopulateAllWeaponsViewModels()
         {
             var vmList = new List<WeaponViewModel>();
 
@@ -55,12 +69,13 @@ namespace WitcherTRPG_API.Controllers
             return vmList;
         }
 
-        private async Task<WeaponViewModel> PopulatWeaponViewModel(int id)
+        [HttpGet("{id}")]
+        private async Task<WeaponViewModel> PopulateWeaponViewModel(int id)
         {
             var vmList = new List<WeaponViewModel>();
             if (!_memoryCache.TryGetValue("WeaponInfo", out vmList))
             {
-                _ = await PopulatAllWeaponsViewModels();
+                _ = await PopulateAllWeaponsViewModels();
                 vmList = _memoryCache.Get("WeaponInfo") as List<WeaponViewModel>;
             }
             return vmList.Where(vm => vm.Weapon.ID == id).FirstOrDefault();

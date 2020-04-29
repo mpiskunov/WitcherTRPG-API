@@ -11,7 +11,7 @@ using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPG_API.Controllers
 {
-    [Route("api/CompletedCrafting")]
+    [Route("api/CompletedCraftingDiagrams")]
     [ApiController]
     public class CraftingViewModelController : ControllerBase
     {
@@ -24,12 +24,26 @@ namespace WitcherTRPG_API.Controllers
             _memoryCache = memoryCache;
         }
 
-        // GET: api/CompletedCrafting
+        // GET: api/CompletedCraftingDiagrams
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CraftingViewModel>>> GetCompleteCraftingDiagrams()
         {
             var crafts = await PopulatAllCraftingViewModels();
             return crafts;
+        }
+
+        // GET: api/CompletedCraftingDiagrams/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CraftingViewModel>> GetCraftingViewModel(int id)
+        {
+            var craftingViewModel = await PopulateCraftingViewModel(id);
+
+            if (craftingViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return craftingViewModel;
         }
 
         private async Task<List<CraftingViewModel>> PopulatAllCraftingViewModels()

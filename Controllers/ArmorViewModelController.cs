@@ -24,7 +24,7 @@ namespace WitcherTRPG_API.Controllers
             _memoryCache = memoryCache;
         }
 
-        // GET: api/CompleteArmor
+        // GET: api/CompletedArmors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ArmorViewModel>>> GetCompleteMonsters()
         {
@@ -32,7 +32,7 @@ namespace WitcherTRPG_API.Controllers
             return armor;
         }
 
-        // GET: api/CompleteArmor/5
+        // GET: api/CompletedArmors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ArmorViewModel>> GetMonsterViewModel(int id)
         {

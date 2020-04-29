@@ -11,7 +11,7 @@ using WitcherTRPGWebApplication.Data;
 
 namespace WitcherTRPG_API.Controllers
 {
-    [Route("api/CompleteAmmunition")]
+    [Route("api/CompletedAmmunitions")]
     [ApiController]
     public class AmmunitionViewModelController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace WitcherTRPG_API.Controllers
             _memoryCache = memoryCache;
         }
 
-        // GET: api/CompleteAmmunition
+        // GET: api/CompletedAmmunitions
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AmmunitionViewModel>>> GetCompleteAmmunitions()
         {
@@ -32,7 +32,7 @@ namespace WitcherTRPG_API.Controllers
             return ammo;
         }
 
-        // GET: api/CompleteAmmunition/5
+        // GET: api/CompletedAmmunitions/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AmmunitionViewModel>> GetMonsterViewModel(int id)
         {

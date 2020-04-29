@@ -13,12 +13,12 @@ namespace WitcherTRPG_API.Controllers
 {
     [Route("api/CompletedMonsters")]
     [ApiController]
-    public class MonsterCompleteController : ControllerBase
+    public class MonsterViewModelController : ControllerBase
     {
         private readonly WitcherContext _context;
         private readonly IMemoryCache _memoryCache;
 
-        public MonsterCompleteController(WitcherContext context, IMemoryCache memoryCache)
+        public MonsterViewModelController(WitcherContext context, IMemoryCache memoryCache)
         {
             _context = context;
             _memoryCache = memoryCache;
@@ -32,7 +32,7 @@ namespace WitcherTRPG_API.Controllers
             return monsters;
         }
 
-        // GET: api/AlchemicalItems/5
+        // GET: api/CompletedMonsters/5
         [HttpGet("{id}")]
         public async Task<ActionResult<MonsterViewModel>> GetMonsterViewModel(int id)
         {

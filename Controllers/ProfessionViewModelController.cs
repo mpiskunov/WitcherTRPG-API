@@ -32,6 +32,20 @@ namespace WitcherTRPG_API.Controllers
             return profession;
         }
 
+        // GET: api/CompleteProfessions/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProfessionViewModel>> GetProfessionViewModel(int id)
+        {
+            var professionViewModel = await PopulateProfessionViewModel(id);
+
+            if (professionViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return professionViewModel;
+        }
+
         private async Task<List<ProfessionViewModel>> PopulatAllProfessionViewModels()
         {
             var vmList = new List<ProfessionViewModel>();

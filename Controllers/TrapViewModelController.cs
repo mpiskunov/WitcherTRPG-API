@@ -24,12 +24,26 @@ namespace WitcherTRPG_API.Controllers
             _memoryCache = memoryCache;
         }
 
-        // GET: api/CompleteProfessions
+        // GET: api/CompletedTraps
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TrapViewModel>>> GetCompleteTraps()
         {
             var traps = await PopulatAllTrapsViewModels();
             return traps;
+        }
+
+        // GET: api/CompletedTraps/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TrapViewModel>> GetTrapViewModel(int id)
+        {
+            var trapViewModel = await PopulateTrapViewModel(id);
+
+            if (trapViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return trapViewModel;
         }
 
         private async Task<List<TrapViewModel>> PopulatAllTrapsViewModels()
