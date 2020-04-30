@@ -92,7 +92,7 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         Stave = 6,
         ThrownWeapon = 7,
         Bow = 8,
-        CrossBow = 9
+        Crossbow = 9
     }
     public enum ArmorClassification
     {
