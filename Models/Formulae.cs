@@ -14,6 +14,6 @@ namespace WitcherTRPGWebApplication.Models
         public int AlchemyDC { get; set; }
         public string Time { get; set; }
         public string Cost { get; set; }
-        public SkillLevel SkillLevel { get; set; }
+        public AlchemySkillLevel SkillLevel { get; set; }
     }
 }

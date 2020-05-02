@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200429220345_AddedViewModels.cs" />
     <Compile Remove="Migrations\20200429220345_AddedViewModels.Designer.cs" />
+    <Compile Remove="Migrations\20200502200315_UpdatedFormulaeSkillLevel.cs" />
+    <Compile Remove="Migrations\20200502200315_UpdatedFormulaeSkillLevel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
