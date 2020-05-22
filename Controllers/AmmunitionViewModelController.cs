@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using WitcherTRPG_API.ViewModels;
 using WitcherTRPGWebApplication.Data;
+using WitcherTRPGWebApplication.ModelsHelper;
 
 namespace WitcherTRPG_API.Controllers
 {
@@ -56,12 +57,22 @@ namespace WitcherTRPG_API.Controllers
                 vmList = new List<AmmunitionViewModel>();
                 var ammo = await _context.Ammunitions.ToListAsync();
                 var ammoEffects = await _context.AmmunitionEffects.Include(ae => ae.Effect).ToListAsync();
+                var craftingDiagrams = await _context.CraftingDiagrams
+                    .Where(cd => cd.CraftingDiagramCategory == CraftingDiagramCategory.Ammunition || 
+                                cd.CraftingDiagramCategory == CraftingDiagramCategory.ElderfolkAmmunition).ToListAsync();
+                var craftingDiagramComponents = await _context.CraftingDiagramComponents
+                        .Include(cdc => cdc.CraftingDiagram)
+                        .Include(cdc => cdc.CraftingComponent)
+                        .Where(cdc => craftingDiagrams.Contains(cdc.CraftingDiagram)).ToListAsync();
+
                 foreach (var am in ammo)
                 {
                     var vm = new AmmunitionViewModel
                     {
                       Ammunition = am,
-                      AmmunitionEffects = ammoEffects.Where(ae => ae.AmmunitionID == am.ID)
+                      AmmunitionEffects = ammoEffects.Where(ae => ae.AmmunitionID == am.ID),
+                      CraftingDiagram = craftingDiagrams.Where(cd => cd.ObjectReferenceID == am.ID).FirstOrDefault(),
+                      CraftingDiagramComponents = craftingDiagramComponents.Where(cdc => cdc.CraftingDiagramID == craftingDiagrams.Where(cd => cd.ObjectReferenceID == am.ID).FirstOrDefault()?.ID)
                     };
                     vmList.Add(vm);
                 }
