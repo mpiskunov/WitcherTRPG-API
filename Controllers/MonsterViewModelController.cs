@@ -55,11 +55,11 @@ namespace WitcherTRPG_API.Controllers
                 vmList = new List<MonsterViewModel>();
                 var monsters = await _context.Monsters.ToListAsync();
                 var monAbilities = await _context.MonsterAbilities.ToListAsync();
-                var monDerStats = await _context.MonsterDerivedStatistics.ToListAsync();
+                var monDerStats = await _context.MonsterDerivedStatistics.Include(mon => mon.DerivedStatistic).ToListAsync();
                 var monInfo = await _context.MonsterInformations.ToListAsync();
                 var monLoot = await _context.MonsterLoots.ToListAsync();
-                var monSkills = await _context.MonsterSkills.ToListAsync();
-                var monStat = await _context.MonsterStatistics.ToListAsync();
+                var monSkills = await _context.MonsterSkills.Include(mon => mon.Skill).ToListAsync();
+                var monStat = await _context.MonsterStatistics.Include(mon => mon.Statistic).ToListAsync();
                 var monVulner = await _context.MonsterVulnerabilities.ToListAsync();
                 var monWeapons = await _context.MonsterWeapons.ToListAsync();
                 foreach (var monster in monsters)
