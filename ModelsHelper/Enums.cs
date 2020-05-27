@@ -67,7 +67,7 @@ namespace WitcherTRPGWebApplication.ModelsHelper
         HexWeaving = 45,
         Intimidation = 46,
         SpellCasting = 47,
-        ResisMagic = 48,
+        ResistMagic = 48,
         ResistCoercion = 49,
         RitualCrafting = 50
     }
