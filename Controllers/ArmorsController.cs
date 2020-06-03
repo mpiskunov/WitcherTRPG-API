@@ -20,7 +20,7 @@ namespace WitcherTRPG_API.Controllers
         {
             _context = context;
         }
-        //
+        
         // GET: api/Armors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Armor>>> GetArmors()
